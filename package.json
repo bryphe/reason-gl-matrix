@@ -4,7 +4,8 @@
   "description": "Cross-platform high-performance vector and matrix math for OpenGL",
   "license": "MIT",
   "esy": {
-    "build": "refmterr dune build -p #{self.name}"
+    "build": "dune build",
+    "buildsInSource": "_build"
   },
   "dependencies": {
     "@opam/dune": "*",
