@@ -1,0 +1,5 @@
+(library
+    (name reglm)
+    (public_name reglm)
+    (cxx_names mystubs)
+    (cxx_flags ((-IE:/reason-gl-matrix/include/glm) (-fno-exceptions) (-fno-rtti) (-lstdc++))))
