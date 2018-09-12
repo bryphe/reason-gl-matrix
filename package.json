@@ -10,6 +10,7 @@
     "@opam/dune": "*",
     "@esy-ocaml/reason": "*",
     "refmterr": "*",
+    "@opam/js_of_ocaml-compiler": "*",
     "ocaml": "~4.6.0"
   },
   "devDependencies": {
