@@ -1,4 +1,0 @@
-(executable
-    (name test)
-    (public_name test)
-    (libraries reglm))
