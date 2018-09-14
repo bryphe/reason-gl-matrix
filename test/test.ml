@@ -17,7 +17,6 @@ let () =
 
 (*VEC3*)
 let () =
-    print_endline ("vec3 testing");
     let v = Vec3.create () in
     let x = Vec3.get_x v in
     let y = Vec3.get_y v in
