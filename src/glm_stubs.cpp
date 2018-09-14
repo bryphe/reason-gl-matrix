@@ -30,6 +30,57 @@ extern "C" {
     };
 
     CAMLprim value
+    caml_vec3_create(value unit) {
+        CAMLparam0 ();
+        glm::vec3 vec = glm::vec3();
+        float* vptr = (glm::value_ptr(vec));
+        CAMLlocal1(v);
+        v = caml_alloc_custom(&objst_custom_ops, sizeof(float) * 3, 0, 1);
+        memcpy((void *)Data_custom_val(v), (void *)vptr, sizeof(float) * 3);
+        CAMLreturn(v);
+    }
+
+    double getByIndex(value vDat, int index) {
+        float *vf = (float *)Data_custom_val(vDat);
+        double d = vf[index];
+        return d;
+    }
+
+    CAMLprim value
+    caml_vec3_get_x(value vVec) {
+        CAMLparam1(vVec);
+        CAMLlocal1(ret);
+        ret = caml_copy_double(getByIndex(vVec, 0));
+        CAMLreturn(ret);
+    }
+
+    CAMLprim value
+    caml_vec3_get_y(value vVec) {
+        CAMLparam1(vVec);
+        CAMLlocal1(ret);
+        ret = caml_copy_double(getByIndex(vVec, 1));
+        CAMLreturn(ret);
+    }
+
+    CAMLprim value
+    caml_vec3_get_z(value vVec) {
+        CAMLparam1(vVec);
+        CAMLlocal1(ret);
+        ret = caml_copy_double(getByIndex(vVec, 0));
+        CAMLreturn(ret);
+    }
+
+    CAMLprim value
+    caml_vec3_debug_print(value vVec) {
+        return Val_unit;
+    }
+
+    CAMLprim value
+    caml_vec3_set(value vVec) {
+        return Val_unit;
+    }
+
+    CAMLprim value
     caml_mat4_create(value unit) {
         CAMLparam0 ();
         glm::mat4 mat = glm::mat4(1.0f);
@@ -55,10 +106,9 @@ extern "C" {
     CAMLprim value
     caml_mat4_get(value vMat, value vIndex) {
         CAMLparam2(vMat, vIndex);
+        float v = getByIndex(vMat, Int_val(vIndex));
         CAMLlocal1(ret);
-        const float* matrix = (const float*)(Data_custom_val(vMat));
-        double d = matrix[Int_val(vIndex)];
-        ret = caml_copy_double(d);
+        ret = caml_copy_double(v);
         CAMLreturn(ret);
     }
 
