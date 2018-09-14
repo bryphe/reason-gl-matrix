@@ -29,11 +29,11 @@ let () =
 (*set / get test*)
 let () =
     let v = Vec3.create() in
-    let _ = Vec3.set v 10. 10. 10. in
+    let _ = Vec3.set v 10. 11. 12. in
     let x = Vec3.get_x v in
     let y = Vec3.get_y v in
     let z = Vec3.get_z v in
     assert (x = 10.0);
-    assert (y = 10.0);
-    assert (z = 10.0);
+    assert (y = 11.0);
+    assert (z = 12.0);
 

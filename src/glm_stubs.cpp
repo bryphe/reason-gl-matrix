@@ -78,7 +78,7 @@ extern "C" {
     caml_vec3_get_z(value vVec) {
         CAMLparam1(vVec);
         CAMLlocal1(ret);
-        ret = caml_copy_double(getByIndex(vVec, 0));
+        ret = caml_copy_double(getByIndex(vVec, 2));
         CAMLreturn(ret);
     }
 
