@@ -9,5 +9,5 @@ let () =
     let m33 = (Regml.mat4_get m 15) in
     assert (m00 = 1.);
     assert (m11 = 1.);
-    assert (m22 = 0.);
+    assert (m22 = 1.);
     assert (m33 = 1.);
