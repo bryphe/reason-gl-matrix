@@ -27,3 +27,10 @@ function caml_vec3_get_y(v) {
 function caml_vec3_get_z(v) {
     return v[2];
 }
+
+// Provides: caml_vec3_set
+function caml_vec3_set(v, x, y, z) {
+    v[0] = x;
+    v[1] = y;
+    v[2] = z;
+}
