@@ -40,6 +40,18 @@ extern "C" {
         CAMLreturn(v);
     }
 
+    CAMLprim value
+    caml_vec3_set(value vVec, value vX, value vY, value vZ) {
+        float *vptr = (float *)Data_custom_val(vVec);
+        float x = Double_val(vX);
+        float y = Double_val(vY);
+        float z = Double_val(vZ);
+        vptr[0] = x;
+        vptr[1] = y;
+        vptr[2] = z;
+        return Val_unit;
+    }
+
     double getByIndex(value vDat, int index) {
         float *vf = (float *)Data_custom_val(vDat);
         double d = vf[index];
@@ -72,11 +84,6 @@ extern "C" {
 
     CAMLprim value
     caml_vec3_debug_print(value vVec) {
-        return Val_unit;
-    }
-
-    CAMLprim value
-    caml_vec3_set(value vVec) {
         return Val_unit;
     }
 
