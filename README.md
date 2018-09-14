@@ -2,5 +2,5 @@
 [![Build Status](https://travis-ci.org/bryphe/reason-gl-matrix.svg?branch=master)](https://travis-ci.org/bryphe/reason-gl-matrix)
 
 # reason-gl-matrix
-## Cross-platform OCaml/Reason bindings for high-performance linear math
+### Cross-platform OCaml/Reason bindings for high-performance vector and matrix math
 
