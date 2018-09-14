@@ -4,6 +4,7 @@
 #include <caml/mlvalues.h>
 #include <caml/custom.h>
 #include <caml/memory.h>
+#include <caml/alloc.h>
 
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
@@ -39,16 +40,26 @@ extern "C" {
         /* } */
         CAMLlocal1(v);
         v = caml_alloc_custom(&objst_custom_ops, sizeof(float) * 16, 0, 1);
-        printf("data custom val pointer: %d\n", (void *)Data_custom_val(v));
-        printf("data custom val pointer2: %d\n", (void *)Data_custom_val(v));
+        /* printf("data custom val pointer: %d\n", (void *)Data_custom_val(v)); */
+        /* printf("data custom val pointer2: %d\n", (void *)Data_custom_val(v)); */
 
         memcpy((void *)Data_custom_val(v), (void *)ptr, sizeof(float) * 16);
         float *vf = (float *)Data_custom_val(v);
-        printf("pointer: %d\n", vf);
-        for(int i = 0; i < 16; i++) {
-            printf("index: %d val: %f address: %d\n", i, ((float *)vf)[i], (vf + i));
-        }
+        /* printf("pointer: %d\n", vf); */
+        /* for(int i = 0; i < 16; i++) { */
+        /*     printf("index: %d val: %f address: %d\n", i, ((float *)vf)[i], (vf + i)); */
+        /* } */
         CAMLreturn(v);
+    }
+
+    CAMLprim value
+    caml_mat4_get(value vMat, value vIndex) {
+        CAMLparam2(vMat, vIndex);
+        CAMLlocal1(ret);
+        const float* matrix = (const float*)(Data_custom_val(vMat));
+        double d = matrix[Int_val(vIndex)];
+        ret = caml_copy_double(d);
+        CAMLreturn(ret);
     }
 
     CAMLprim value
