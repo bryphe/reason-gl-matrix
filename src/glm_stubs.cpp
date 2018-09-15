@@ -21,7 +21,7 @@ extern "C" {
     }
 
     static struct custom_operations objst_custom_ops = {
-            identifier: "obj_st handling",
+            identifier: (char*)"obj_st handling",
             finalize:    custom_finalize_default,
             compare:     custom_compare_default,
             hash:        custom_hash_default,
