@@ -1,6 +1,6 @@
 // Provides: caml_mat4_create
 function caml_mat4_create() {
-    return mat4.create();
+    return joo_global_object.mat4.create();
 }
 
 // Provides: caml_mat4_get
@@ -10,7 +10,7 @@ function caml_mat4_get(matrix, index) {
 
 // Provides: caml_vec3_create
 function caml_vec3_create() {
-    return vec3.create();
+    return joo_global_object.vec3.create();
 }
 
 // Provides: caml_vec3_get_x
