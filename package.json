@@ -4,7 +4,7 @@
   "description": "Cross-platform high-performance vector and matrix math for OpenGL",
   "license": "MIT",
   "esy": {
-    "build": ["dune build", "dune build ./test/test.bc.js", "dune runtest"],
+    "build": ["refmterr dune build", "dune build ./test/test.bc.js", "dune runtest"],
     "buildsInSource": "_build"
   },
   "resolutions": {
