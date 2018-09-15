@@ -1,6 +1,8 @@
-type mat4
+type t
 
-external create: unit -> mat4 = "caml_mat4_create"
-external get: mat4 -> int -> float = "caml_mat4_get"
+external create: unit -> t = "caml_mat4_create"
+external get: t -> int -> float = "caml_mat4_get"
 
-external debug_print: mat4 -> float = "caml_mat4_debug_print"
+external fromTranslation: t -> Vec3.t -> unit ="caml_mat4_fromTranslation"
+external fromScaling: t -> Vec3.t -> unit = "caml_mat4_fromScaling"
+
