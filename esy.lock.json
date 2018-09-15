@@ -1,5 +1,5 @@
 {
-  "hash": "12ad78db1d6e95ef44ca20cd94a33a02",
+  "hash": "437fc583aa48fd9b7974f4fa86de3fff",
   "root": "reason-gl-matrix@path:.",
   "node": {
     "refmterr@3.1.7": {
@@ -572,7 +572,7 @@
         "opam": null
       },
       "dependencies": [
-        "@esy-ocaml/esy-installer@0.0.0", "@esy-ocaml/substs@0.0.1",
+        "@esy-ocaml/esy-installer@0.0.1", "@esy-ocaml/substs@0.0.1",
         "@opam/jbuilder@opam:transition", "@opam/menhir@opam:20171013",
         "@opam/merlin-extend@opam:0.3",
         "@opam/ocaml-migrate-parsetree@opam:1.0.11",
@@ -589,16 +589,16 @@
         "opam": null
       },
       "dependencies": [
-        "@esy-ocaml/esy-installer@0.0.0", "@esy-ocaml/substs@0.0.1",
+        "@esy-ocaml/esy-installer@0.0.1", "@esy-ocaml/substs@0.0.1",
         "@opam/ocamlfind@opam:1.8.0", "@opam/yojson@opam:1.4.1"
       ]
     },
-    "@esy-ocaml/esy-installer@0.0.0": {
+    "@esy-ocaml/esy-installer@0.0.1": {
       "record": {
         "name": "@esy-ocaml/esy-installer",
-        "version": "0.0.0",
+        "version": "0.0.1",
         "source":
-          "archive:https://registry.npmjs.org/@esy-ocaml/esy-installer/-/esy-installer-0.0.0.tgz#sha1:6b0e2bd4ee43531ac74793fe55cfcc3aca197a66",
+          "archive:https://registry.npmjs.org/@esy-ocaml/esy-installer/-/esy-installer-0.0.1.tgz#sha1:420c65f7e5f9bafa3da578532c352acdf00837aa",
         "files": [],
         "opam": null
       },

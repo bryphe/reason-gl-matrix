@@ -7,6 +7,9 @@
     "build": ["dune build", "dune build ./test/test.bc.js", "dune runtest"],
     "buildsInSource": "_build"
   },
+  "resolutions": {
+    "@esy-ocaml/esy-installer": "0.0.1"
+  },
   "dependencies": {
     "@opam/dune": "*",
     "@esy-ocaml/reason": "*",
