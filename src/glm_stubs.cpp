@@ -111,6 +111,44 @@ extern "C" {
     }
 
     CAMLprim value
+    caml_mat4_fromScaling(value vMat, value vVec) {
+        float* matrix = (float*)(Data_custom_val(vMat));
+        float* vec = (float*)(Data_custom_val(vVec));
+
+        glm::mat4 glm_matrix = glm::mat4(1.0f);
+        glm::vec3 glm_vec = glm::make_vec3(vec);
+
+        glm::mat4 result = glm::scale(glm_matrix, glm_vec);
+
+        const float *outMatrix = (const float*)(glm::value_ptr(result));
+
+        for(int i = 0; i < 16; i++) {
+            matrix[i] = outMatrix[i];
+        }
+
+        return Val_unit;
+    }
+
+    CAMLprim value
+    caml_mat4_fromTranslation(value vMat, value vVec) {
+        float* matrix = (float*)(Data_custom_val(vMat));
+        float* vec = (float*)(Data_custom_val(vVec));
+
+        glm::mat4 glm_matrix = glm::mat4(1.0f);
+        glm::vec3 glm_vec = glm::make_vec3(vec);
+
+        glm::mat4 result = glm::translate(glm_matrix, glm_vec);
+
+        const float *outMatrix = (const float*)(glm::value_ptr(result));
+
+        for(int i = 0; i < 16; i++) {
+            matrix[i] = outMatrix[i];
+        }
+
+        return Val_unit;
+    }
+
+    CAMLprim value
     caml_mat4_get(value vMat, value vIndex) {
         CAMLparam2(vMat, vIndex);
         float v = getByIndex(vMat, Int_val(vIndex));

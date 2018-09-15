@@ -15,6 +15,35 @@ let () =
     assert (m33 = 1.);
 ;;
 
+(* fromTranslation *)
+let () =
+    let m = Mat4.create () in
+    let v = Vec3.create () in
+    let _ = Vec3.set v 11. 12. 13. in
+    let _ = Mat4.fromTranslation m v in
+    let m03 = Mat4.get m 12 in
+    let m13 = Mat4.get m 13 in
+    let m23 = Mat4.get m 14 in
+    assert (m03 = 11.);
+    assert (m13 = 12.);
+    assert (m23 = 13.);
+;;
+
+(* fromScale *)
+let () =
+    let m = Mat4.create () in
+    let v = Vec3.create () in
+    let _ = Vec3.set v 2. 3. 4. in
+    let _ = Mat4.fromScaling m v in
+    let m00 = Mat4.get m 0 in
+    let m11 = Mat4.get m 5 in
+    let m22 = Mat4.get m 10 in
+    assert (m00 = 2.);
+    assert (m11 = 3.);
+    assert (m22 = 4.);
+;;
+
+
 (*VEC3*)
 let () =
     let v = Vec3.create () in
