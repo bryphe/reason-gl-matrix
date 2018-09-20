@@ -15,6 +15,31 @@ let () = {
   assert(m33 == 1.);
 };
 
+/* multiply */
+let () = {
+    let vTranslation = Vec3.create();
+    Vec3.set(vTranslation, 2., 2., 2.);
+    let mTranslation = Mat4.create();
+    Mat4.fromTranslation(mTranslation, vTranslation);
+
+    let vScale = Vec3.create();
+    Vec3.set(vScale, 3., 4., 5.);
+    let mScale = Mat4.create();
+    Mat4.fromScaling(mScale, vScale);
+
+    let mResult = Mat4.create();
+    Mat4.multiply(mResult, mScale, mTranslation);
+
+    let m03 = Mat4.get(mResult, 12);
+    let m13 = Mat4.get(mResult, 13);
+    let m14 = Mat4.get(mResult, 14);
+    let m15 = Mat4.get(mResult, 15);
+    assert(m03 == 6.);
+    assert(m13 == 8.);
+    assert(m14 == 10.);
+    assert(m15 == 1.);
+};
+
 /*VEC3*/
 let () = {
   let v = Vec3.create();

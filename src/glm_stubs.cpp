@@ -149,6 +149,25 @@ extern "C" {
     }
 
     CAMLprim value
+    caml_mat4_multiply(value vOut, value vM1, value vM2) {
+        float* pOutMatrix = (float*)(Data_custom_val(vOut));
+        const float* pM1 = (const float*)(Data_custom_val(vM1));
+        const float* pM2 = (const float*)(Data_custom_val(vM2));
+
+        glm::mat4 m1 = glm::make_mat4(pM1);
+        glm::mat4 m2 = glm::make_mat4(pM2);
+        glm::mat4 result = m1 * m2;
+
+        const float* pResult = (const float*)(glm::value_ptr(result));
+
+        for(int i = 0; i < 16; i++) {
+            pOutMatrix[i] = pResult[i];
+        }
+
+        return Val_unit;
+    }
+
+    CAMLprim value
     caml_mat4_get(value vMat, value vIndex) {
         CAMLparam2(vMat, vIndex);
         float v = getByIndex(vMat, Int_val(vIndex));

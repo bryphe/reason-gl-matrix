@@ -8,6 +8,11 @@ function caml_mat4_get(matrix, index) {
     return matrix[index];
 }
 
+// Provides: caml_mat4_multiply
+function caml_mat4_multiply(mOut, m1, m2) {
+    return joo_global_object.mat4.multiply(mOut, m1, m2);
+}
+
 // Provides: caml_mat4_fromTranslation
 function caml_mat4_fromTranslation(matrix, v) {
     return joo_global_object.mat4.fromTranslation(matrix, v);
