@@ -91,7 +91,6 @@ extern "C" {
     caml_mat4_create(value unit) {
         CAMLparam0 ();
         glm::mat4 mat = glm::mat4(1.0f);
-        printf("creating");
         float* ptr = (glm::value_ptr(mat));
         /* for(int i = 0; i < 16; i++) { */
         /*     printf("index: %d val: %f address: %d\n", i, ((float *)ptr)[i], (ptr + i)); */
