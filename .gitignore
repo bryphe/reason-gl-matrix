@@ -62,3 +62,4 @@ typings/
 
 .merlin
 _build/
+*.install
