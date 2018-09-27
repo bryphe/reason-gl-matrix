@@ -7,3 +7,5 @@ external multiply: (t, t, t) => unit = "caml_mat4_multiply";
 
 external fromTranslation: (t, Vec3.t) => unit = "caml_mat4_fromTranslation";
 external fromScaling: (t, Vec3.t) => unit = "caml_mat4_fromScaling";
+
+external lookAt: (t, Vec3.t, Vec3.t, Vec3.t) => unit = "caml_mat4_lookat";

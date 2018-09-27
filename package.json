@@ -3,8 +3,13 @@
   "version": "0.1.0",
   "description": "Cross-platform high-performance vector and matrix math for OpenGL",
   "license": "MIT",
+  "scripts": {
+    "test:js": "esy b dune build ./test/test.bc.js && node bin/test-jsoo.js",
+    "test:native": "esy b dune runtest",
+    "test": "npm run test:js && npm run test:native"
+  },
   "esy": {
-    "build": ["refmterr dune build", "dune build ./test/test.bc.js", "dune runtest"],
+    "build": ["refmterr dune build"],
     "buildsInSource": "_build"
   },
   "resolutions": {

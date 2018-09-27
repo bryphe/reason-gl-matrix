@@ -148,6 +148,28 @@ extern "C" {
     }
 
     CAMLprim value
+    caml_mat4_lookat(value vMat, value vEye, value vCenter, value vUp) {
+        float* matrix = (float*)(Data_custom_val(vMat));
+        float* vecEye = (float*)(Data_custom_val(vEye));
+        float* vecCenter = (float*)(Data_custom_val(vCenter));
+        float* vecUp = (float*)(Data_custom_val(vUp));
+
+        glm::mat4 glm_matrix = glm::mat4(1.0f);
+        glm::vec3 glm_vEye = glm::make_vec3(vecEye);
+        glm::vec3 glm_vCenter = glm::make_vec3(vecCenter);
+        glm::vec3 glm_vUp = glm::make_vec3(vecUp);
+
+        glm::mat4 result = glm::lookAt(glm_vEye, glm_vCenter, glm_vUp);
+
+        const float *outMatrix = (const float*)(glm::value_ptr(result));
+        for(int i = 0; i < 16; i++) {
+            matrix[i] = outMatrix[i];
+        }
+
+        return Val_unit;
+    }
+
+    CAMLprim value
     caml_mat4_multiply(value vOut, value vM1, value vM2) {
         float* pOutMatrix = (float*)(Data_custom_val(vOut));
         const float* pM1 = (const float*)(Data_custom_val(vM1));

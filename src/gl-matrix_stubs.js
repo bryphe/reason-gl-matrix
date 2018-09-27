@@ -23,6 +23,11 @@ function caml_mat4_fromScaling(matrix, v) {
     return joo_global_object.mat4.fromScaling(matrix, v);
 }
 
+// Provides: caml_mat4_lookat
+function caml_mat4_lookat(matrix, eye, center, up) {
+    return joo_global_object.mat4.lookAt(matrix, eye, center, up);
+}
+
 // Provides: caml_vec3_create
 function caml_vec3_create() {
     return joo_global_object.vec3.create();

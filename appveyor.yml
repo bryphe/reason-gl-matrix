@@ -18,6 +18,6 @@ install:
 build_script:
     - esy build
     # Run tests for JS
-    - node bin/test-jsoo.js
+    - npm run test
 
 test: off

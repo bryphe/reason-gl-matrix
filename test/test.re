@@ -2,17 +2,30 @@ open Reglm;
 
 /*MAT4*/
 
+
+let assertFloatsEqual = (expected, actual) => {
+    let equal = abs_float(expected -. actual) < min_float;
+    assert(equal);
+};
+
+let assertMat4 = (expected, actual) => {
+    for (i in 0 to 15) {
+        let expectedValue = expected[i];
+        let actualValue = Mat4.get(actual, i);
+        assertFloatsEqual(expectedValue, actualValue);
+    };
+};
+
 /* simple test for identity matrix */
 let () = {
-  let m = Mat4.create();
-  let m00 = Mat4.get(m, 0);
-  let m11 = Mat4.get(m, 5);
-  let m22 = Mat4.get(m, 10);
-  let m33 = Mat4.get(m, 15);
-  assert(m00 == 1.);
-  assert(m11 == 1.);
-  assert(m22 == 1.);
-  assert(m33 == 1.);
+    let expectedMatrix = [|
+    1., 0., 0., 0.,
+    0., 1., 0., 0.,
+    0., 0., 1.0, 0.,
+    0., 0., 0., 1.0
+    |];
+
+    assertMat4(expectedMatrix, Mat4.create());
 };
 
 /* multiply */
@@ -38,6 +51,29 @@ let () = {
     assert(m13 == 8.);
     assert(m14 == 10.);
     assert(m15 == 1.);
+};
+
+/* lookAt */
+let () = {
+    let vEye = Vec3.create();
+    let vCenter = Vec3.create();
+    let vUp = Vec3.create();
+
+    Vec3.set(vEye, 0., 0., 1.);
+    Vec3.set(vCenter, 0., 0., -1.);
+    Vec3.set(vUp, 0., 1., 0.);
+
+    let mResult = Mat4.create();
+    Mat4.lookAt(mResult, vEye, vCenter, vUp);
+
+    let expectedMatrix = [|
+    1., 0., 0., 0.,
+    0., 1., 0., 0.,
+    0., 0., 1.0, 0.,
+    0., 0., -1.0, 1.0
+    |];
+
+    assertMat4(expectedMatrix, mResult);
 };
 
 /*VEC3*/

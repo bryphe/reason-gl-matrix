@@ -9,4 +9,4 @@ install:
 - esy install
 script:
 - esy build
-- node bin/test-jsoo.js
+- npm run test
