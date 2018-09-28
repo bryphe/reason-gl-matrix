@@ -9,3 +9,7 @@ external fromTranslation: (t, Vec3.t) => unit = "caml_mat4_fromTranslation";
 external fromScaling: (t, Vec3.t) => unit = "caml_mat4_fromScaling";
 
 external lookAt: (t, Vec3.t, Vec3.t, Vec3.t) => unit = "caml_mat4_lookat";
+
+external ortho: (t, float, float, float, float, float, float) => unit = "caml_mat4_ortho_bytecode" "caml_mat4_ortho_native";
+external perspective: (t, float, float, float, float) => unit = "caml_mat4_perspective";
+

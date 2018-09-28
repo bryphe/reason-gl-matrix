@@ -170,6 +170,49 @@ extern "C" {
     }
 
     CAMLprim value
+    caml_mat4_perspective(value vMat, value vFov, value vAspectRatio, value vNear, value vFar) {
+        float* matrix = (float *)(Data_custom_val(vMat));
+        float fFov = Double_val(vFov);
+        float fAspectRatio = Double_val(vAspectRatio);
+        float fNear = Double_val(vNear);
+        float fFar = Double_val(vFar);
+
+        glm::mat4 result = glm::perspective(fFov, fAspectRatio, fNear, fFar);
+
+        const float *outMatrix = (const float*)(glm::value_ptr(result));
+        for (int i = 0; i < 16; i++) {
+            matrix[i] = outMatrix[i];
+        }
+
+        return Val_unit;
+    }
+
+    CAMLprim value
+    caml_mat4_ortho_native(value vMat, value vLeft, value vRight, value vBottom, value vTop, value vNear, value vFar) {
+        float* matrix = (float *)(Data_custom_val(vMat));
+        float fLeft = Double_val(vLeft);
+        float fRight = Double_val(vRight);
+        float fBottom = Double_val(vBottom);
+        float fTop = Double_val(vTop);
+        float fNear = Double_val(vNear);
+        float fFar = Double_val(vFar);
+
+        glm::mat4 result = glm::ortho(fLeft, fRight, fBottom, fTop, fNear, fFar);
+
+        const float *outMatrix = (const float*)(glm::value_ptr(result));
+        for (int i = 0; i < 16; i++) {
+            matrix[i] = outMatrix[i];
+        }
+
+        return Val_unit;
+    }
+
+    CAMLprim value
+    caml_mat4_ortho_bytecode(value *argv, int argn) {
+        return caml_mat4_ortho_native(argv[0], argv[1], argv[2], argv[3], argv[4], argv[5], argv[6]);
+    }
+
+    CAMLprim value
     caml_mat4_multiply(value vOut, value vM1, value vM2) {
         float* pOutMatrix = (float*)(Data_custom_val(vOut));
         const float* pM1 = (const float*)(Data_custom_val(vM1));

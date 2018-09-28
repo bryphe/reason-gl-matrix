@@ -4,7 +4,9 @@ open Reglm;
 
 
 let assertFloatsEqual = (expected, actual) => {
-    let equal = abs_float(expected -. actual) < min_float;
+    let equal = abs_float(expected -. actual) < 0.00001;
+
+    print_endline ("[assertFloatsEqual] Expected: " ++ string_of_float(expected) ++ " Actual: " ++ string_of_float(actual));
     assert(equal);
 };
 
@@ -53,6 +55,8 @@ let () = {
     assert(m15 == 1.);
 };
 
+let pi = acos(-1.);
+
 /* lookAt */
 let () = {
     let vEye = Vec3.create();
@@ -71,6 +75,38 @@ let () = {
     0., 1., 0., 0.,
     0., 0., 1.0, 0.,
     0., 0., -1.0, 1.0
+    |];
+
+    assertMat4(expectedMatrix, mResult);
+};
+
+/* perspective */
+/* Test case from: https://github.com/toji/gl-matrix/blob/master/spec/gl-matrix/mat4-spec.js */
+let () = {
+    let mResult = Mat4.create();
+    Mat4.perspective(mResult, 45. *. pi /. 180., 640. /. 480., 0.1, 200.);
+
+    let expectedMatrix = [|
+    1.81066, 0., 0., 0.,
+    0., 2.414213, 0., 0.,
+    0., 0., -1.001, -1.,
+    0., 0., -0.2001, 0.
+    |];
+
+    assertMat4(expectedMatrix, mResult);
+};
+
+/* ortho */
+/* Test case from: https://github.com/toji/gl-matrix/blob/master/spec/gl-matrix/mat4-spec.js */
+let () = {
+    let mResult = Mat4.create();
+    Mat4.ortho(mResult, -1., 1., -1., 1., -1., 1.);
+
+    let expectedMatrix = [|
+        1., 0., 0., 0.,
+        0., 1., 0., 0.,
+        0., 0., -1., 0.,
+        0., 0., 0., 1.
     |];
 
     assertMat4(expectedMatrix, mResult);
