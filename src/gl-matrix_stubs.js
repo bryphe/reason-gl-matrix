@@ -28,6 +28,11 @@ function caml_mat4_lookat(matrix, eye, center, up) {
     return joo_global_object.mat4.lookAt(matrix, eye, center, up);
 }
 
+// Provides: caml_mat4_rotate
+function caml_mat4_rotate(matrix, angle, vector) {
+    return joo_global_object.mat4.rotate(matrix, angle, vector);
+}
+
 // Provides: caml_mat4_perspective
 function caml_mat4_perspective(matrix, fov, aspectRatio, near, far) {
     return joo_global_object.mat4.perspective(matrix, fov, aspectRatio, near, far);

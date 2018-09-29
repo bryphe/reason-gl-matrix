@@ -148,6 +148,24 @@ extern "C" {
     }
 
     CAMLprim value
+    caml_mat4_rotate(value vMat, value vRad, value vAxis) {
+        float* pMatrix = (float*)(Data_custom_val(vMat));
+        float fRad = Double_val(vRad); 
+        float* pAxis = (float*)(Data_custom_val(vAxis));
+
+        glm::mat4 glm_matrix = glm::make_mat4(pMatrix);
+
+        glm::mat4 result = glm::rotate(glm_matrix, fRad, pAxis[0], pAxis[1], pAxis[2]);
+
+        const float* outMatrix = (const float*)(glm::value_ptr(result));
+        for(int i = 0; i < 16; i++) {
+            pMatrix[i] = outMatrix[i];
+        }
+
+        return Val_unit;
+    }
+
+    CAMLprim value
     caml_mat4_lookat(value vMat, value vEye, value vCenter, value vUp) {
         float* matrix = (float*)(Data_custom_val(vMat));
         float* vecEye = (float*)(Data_custom_val(vEye));

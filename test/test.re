@@ -32,13 +32,11 @@ let () = {
 
 /* multiply */
 let () = {
-    let vTranslation = Vec3.create();
-    Vec3.set(vTranslation, 2., 2., 2.);
+    let vTranslation = Vec3.create(2., 2., 2.);
     let mTranslation = Mat4.create();
     Mat4.fromTranslation(mTranslation, vTranslation);
 
-    let vScale = Vec3.create();
-    Vec3.set(vScale, 3., 4., 5.);
+    let vScale = Vec3.create(3., 4., 5.);
     let mScale = Mat4.create();
     Mat4.fromScaling(mScale, vScale);
 
@@ -57,11 +55,29 @@ let () = {
 
 let pi = acos(-1.);
 
+/* rotate */
+let () = {
+    let m = Mat4.create();
+    let rad = pi *. 0.5;
+    let axis = Vec3.create(axis, 1., 0., 0.);
+
+    Mat4.rotate(m, rad, axis);
+
+    let expectedResult = [|
+    1.0, 0., 0., 0.,
+    0., cos(rad), sin(rad), 0.,
+    0., -sin(rad), cos(rad), 0.,
+    0., 0., 0., 1.
+    |];
+
+    assertMat4(expectedResult, m);
+};
+
 /* lookAt */
 let () = {
-    let vEye = Vec3.create();
-    let vCenter = Vec3.create();
-    let vUp = Vec3.create();
+    let vEye = Vec3.zero();
+    let vCenter = Vec3.zero();
+    let vUp = Vec3.zero();
 
     Vec3.set(vEye, 0., 0., 1.);
     Vec3.set(vCenter, 0., 0., -1.);
@@ -114,7 +130,7 @@ let () = {
 
 /*VEC3*/
 let () = {
-  let v = Vec3.create();
+  let v = Vec3.zero();
   let x = Vec3.get_x(v);
   let y = Vec3.get_y(v);
   let z = Vec3.get_z(v);
@@ -125,8 +141,7 @@ let () = {
 
 /*set / get test*/
 let () = {
-  let v = Vec3.create();
-  let _ = Vec3.set(v, 10., 11., 12.);
+  let v = Vec3.create(10., 11., 12.);
   let x = Vec3.get_x(v);
   let y = Vec3.get_y(v);
   let z = Vec3.get_z(v);
