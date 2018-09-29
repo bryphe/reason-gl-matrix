@@ -57,14 +57,14 @@ let pi = acos(-1.);
 let () = {
     let m = Mat4.create();
     let rad = pi *. 0.5;
-    let axis = Vec3.create(axis, 1., 0., 0.);
+    let axis = Vec3.create(1., 0., 0.);
 
     Mat4.rotate(m, rad, axis);
 
     let expectedResult = [|
     1.0, 0., 0., 0.,
     0., cos(rad), sin(rad), 0.,
-    0., -sin(rad), cos(rad), 0.,
+    0., -1. *. sin(rad), cos(rad), 0.,
     0., 0., 0., 1.
     |];
 

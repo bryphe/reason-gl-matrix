@@ -153,9 +153,9 @@ extern "C" {
         float fRad = Double_val(vRad); 
         float* pAxis = (float*)(Data_custom_val(vAxis));
 
+        glm::vec3 glm_vec = glm::make_vec3(pAxis);
         glm::mat4 glm_matrix = glm::make_mat4(pMatrix);
-
-        glm::mat4 result = glm::rotate(glm_matrix, fRad, pAxis[0], pAxis[1], pAxis[2]);
+        glm::mat4 result = glm::rotate(glm_matrix, fRad, glm_vec);
 
         const float* outMatrix = (const float*)(glm::value_ptr(result));
         for(int i = 0; i < 16; i++) {
