@@ -4,7 +4,7 @@
   "description": "Cross-platform high-performance vector and matrix math for OpenGL",
   "license": "MIT",
   "scripts": {
-    "test:js": "esy b dune build ./test/test.bc.js && node bin/test-jsoo.js",
+    "test:js": "esy b dune build ./test/bin/test_runner.bc.js && node bin/test-jsoo.js",
     "test:native": "esy b dune runtest",
     "test": "npm run test:js && npm run test:native"
   },
