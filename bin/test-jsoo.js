@@ -8,4 +8,4 @@ Object.keys(glMatrix).forEach((key) => {
 });
 
 // Run our tests
-const test = require("./../_build/default/test/test.bc.js");
+const test = require("./../_build/default/test/bin/test_runner.bc.js");

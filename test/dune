@@ -1,6 +1,7 @@
-(executable
-    (name test)
-    (public_name runtest)
+(library
+    (name Test)
+    (library_flags (-linkall))
+    (modules (:standard))
     (libraries
         reglm
             ))

@@ -41,6 +41,21 @@ extern "C" {
     }
 
     CAMLprim value
+    caml_quat_create(value vX, value vY, value vZ, value vW) {
+        CAMLparam4(vX, vY, vZ, vW);
+        float pQuat[4];
+        pQuat[0] = Double_val(vW);
+        pQuat[1] = Double_val(vX);
+        pQuat[2] = Double_val(vY);
+        pQuat[3] = Double_val(vZ);
+
+        CAMLlocal1(q);
+        q = caml_alloc_custom(&objst_custom_ops, sizeof(float) * 4, 0, 1);
+        memcpy((void*)Data_custom_val(q), (void *)pQuat, sizeof(float) * 4);
+        CAMLreturn(q);
+    };
+
+    CAMLprim value
     caml_vec3_set(value vVec, value vX, value vY, value vZ) {
         float *vptr = (float *)Data_custom_val(vVec);
         float x = Double_val(vX);
@@ -79,6 +94,38 @@ extern "C" {
         CAMLparam1(vVec);
         CAMLlocal1(ret);
         ret = caml_copy_double(getByIndex(vVec, 2));
+        CAMLreturn(ret);
+    }
+
+    CAMLprim value
+    caml_quat_get_w(value vQuat) {
+        CAMLparam1(vQuat);
+        CAMLlocal1(ret);
+        ret = caml_copy_double(getByIndex(vQuat, 0));
+        CAMLreturn(ret);
+    }
+
+    CAMLprim value
+    caml_quat_get_x(value vQuat) {
+        CAMLparam1(vQuat);
+        CAMLlocal1(ret);
+        ret = caml_copy_double(getByIndex(vQuat, 1));
+        CAMLreturn(ret);
+    }
+
+    CAMLprim value
+    caml_quat_get_y(value vQuat) {
+        CAMLparam1(vQuat);
+        CAMLlocal1(ret);
+        ret = caml_copy_double(getByIndex(vQuat, 2));
+        CAMLreturn(ret);
+    }
+
+    CAMLprim value
+    caml_quat_get_z(value vQuat) {
+        CAMLparam1(vQuat);
+        CAMLlocal1(ret);
+        ret = caml_copy_double(getByIndex(vQuat, 3));
         CAMLreturn(ret);
     }
 
