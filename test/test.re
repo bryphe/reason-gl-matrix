@@ -1,8 +1,6 @@
 open Reglm;
 
 /*MAT4*/
-
-
 let assertFloatsEqual = (expected, actual) => {
     let equal = abs_float(expected -. actual) < 0.00001;
 
