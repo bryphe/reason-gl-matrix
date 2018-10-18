@@ -30,6 +30,18 @@ extern "C" {
     };
 
     CAMLprim value
+    caml_vec2_create(value unit) {
+        CAMLparam0 ();
+        glm::vec2 vec = glm::vec2();
+        float* vptr = (glm::value_ptr(vec));
+        CAMLlocal1(v);
+        v = caml_alloc_custom(&objst_custom_ops, sizeof(float) * 2, 0, 1);
+        memcpy((void *)Data_custom_val(v), (void *)vptr, sizeof(float) * 2);
+        CAMLreturn(v);
+    }
+
+
+    CAMLprim value
     caml_vec3_create(value unit) {
         CAMLparam0 ();
         glm::vec3 vec = glm::vec3();
@@ -37,6 +49,17 @@ extern "C" {
         CAMLlocal1(v);
         v = caml_alloc_custom(&objst_custom_ops, sizeof(float) * 3, 0, 1);
         memcpy((void *)Data_custom_val(v), (void *)vptr, sizeof(float) * 3);
+        CAMLreturn(v);
+    }
+
+    CAMLprim value
+    caml_vec4_create(value unit) {
+        CAMLparam0 ();
+        glm::vec4 vec = glm::vec4();
+        float* vptr = (glm::value_ptr(vec));
+        CAMLlocal1(v);
+        v = caml_alloc_custom(&objst_custom_ops, sizeof(float) * 4, 0, 1);
+        memcpy((void *)Data_custom_val(v), (void *)vptr, sizeof(float) * 4);
         CAMLreturn(v);
     }
 
@@ -56,6 +79,16 @@ extern "C" {
     };
 
     CAMLprim value
+    caml_vec2_set(value vVec, value vX, value vY) {
+        float *vptr = (float *)Data_custom_val(vVec);
+        float x = Double_val(vX);
+        float y = Double_val(vY);
+        vptr[0] = x;
+        vptr[1] = y;
+        return Val_unit;
+    }
+
+    CAMLprim value
     caml_vec3_set(value vVec, value vX, value vY, value vZ) {
         float *vptr = (float *)Data_custom_val(vVec);
         float x = Double_val(vX);
@@ -64,6 +97,20 @@ extern "C" {
         vptr[0] = x;
         vptr[1] = y;
         vptr[2] = z;
+        return Val_unit;
+    }
+
+    CAMLprim value
+    caml_vec4_set(value vVec, value vX, value vY, value vZ, value vW) {
+        float *vptr = (float *)Data_custom_val(vVec);
+        float x = Double_val(vX);
+        float y = Double_val(vY);
+        float z = Double_val(vZ);
+        float w = Double_val(vW);
+        vptr[0] = x;
+        vptr[1] = y;
+        vptr[2] = z;
+        vptr[3] = w;
         return Val_unit;
     }
 
@@ -94,6 +141,14 @@ extern "C" {
         CAMLparam1(vVec);
         CAMLlocal1(ret);
         ret = caml_copy_double(getByIndex(vVec, 2));
+        CAMLreturn(ret);
+    }
+
+    CAMLprim value
+    caml_vec4_get_w(value vVec) {
+        CAMLparam1(vVec);
+        CAMLlocal1(ret);
+        ret = caml_copy_double(getByIndex(vVec, 3));
         CAMLreturn(ret);
     }
 
