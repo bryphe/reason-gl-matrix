@@ -1,15 +1,15 @@
-open Reglm;
+module Angle = Reglm.Angle;
 
 let () = {
-    let degree = Angle.degrees_of_float(1.0);
+    let degree = Angle.from_degrees(1.0);
     let radians = Angle.to_radians(degree);
 
-    assert(radians == 0.01745);
+    Helpers.assertFloatsEqual(radians, 0.0174532925);
 };
 
 let () = {
-    let radians = Angle.radians_of_float(0.01745);
+    let radians = Angle.from_radians(0.0174532925);
     let degrees = Angle.to_degrees(radians);
 
-    assert(degrees == 1.);
+    Helpers.assertFloatsEqual(degrees, 1.);
 };

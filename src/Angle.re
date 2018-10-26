@@ -4,8 +4,8 @@ type t =
 | Degrees(float)
 | Radians(float)
 
-let radians_of_float = (x: float) => Radians(x);
-let degrees_of_float = (x: float) => Degrees(x);
+let from_radians = (x: float) => Radians(x);
+let from_degrees = (x: float) => Degrees(x);
 
 let to_radians = (angle: t) => {
     switch(angle) {
@@ -19,4 +19,12 @@ let to_degrees = (angle: t) => {
     | Degrees(x) => x;
     | Radians(x) => x *. 180. /. pi
     };
+};
+
+let cos = (angle: t) => {
+    Pervasives.cos(to_radians(angle));
+};
+
+let sin = (angle: t) => {
+    Pervasives.sin(to_radians(angle));
 };

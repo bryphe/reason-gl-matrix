@@ -1,18 +1,13 @@
 open Reglm;
 
+module Angle = Reglm.Angle;
+
 /*MAT4*/
-let assertFloatsEqual = (expected, actual) => {
-    let equal = abs_float(expected -. actual) < 0.00001;
-
-    print_endline ("[assertFloatsEqual] Expected: " ++ string_of_float(expected) ++ " Actual: " ++ string_of_float(actual));
-    assert(equal);
-};
-
 let assertMat4 = (expected, actual) => {
     for (i in 0 to 15) {
         let expectedValue = expected[i];
         let actualValue = Mat4.get(actual, i);
-        assertFloatsEqual(expectedValue, actualValue);
+        Helpers.assertFloatsEqual(expectedValue, actualValue);
     };
 };
 
@@ -56,15 +51,15 @@ let pi = acos(-1.);
 /* rotate */
 let () = {
     let m = Mat4.create();
-    let rad = pi *. 0.5;
+    let rad = Angle.from_radians(pi *. 0.5);
     let axis = Vec3.create(1., 0., 0.);
 
     Mat4.rotate(m, rad, axis);
 
     let expectedResult = [|
     1.0, 0., 0., 0.,
-    0., cos(rad), sin(rad), 0.,
-    0., -1. *. sin(rad), cos(rad), 0.,
+    0., Angle.cos(rad), Angle.sin(rad), 0.,
+    0., -1. *. Angle.sin(rad), Angle.cos(rad), 0.,
     0., 0., 0., 1.
     |];
 

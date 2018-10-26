@@ -212,6 +212,21 @@ extern "C" {
     }
 
     CAMLprim value
+    caml_mat4_identity(value vMat) {
+        float* matrix = (float*)(Data_custom_val(vMat));
+
+        glm::mat4 glm_matrix = glm::mat4(1.0f);
+        const float *outMatrix = (const float*)(glm::value_ptr(glm_matrix));
+
+        for(int i = 0; i < 16; i++) {
+            matrix[i] = outMatrix[i];
+        }
+
+        return Val_unit;
+    }
+
+
+    CAMLprim value
     caml_mat4_fromScaling(value vMat, value vVec) {
         float* matrix = (float*)(Data_custom_val(vMat));
         float* vec = (float*)(Data_custom_val(vVec));
@@ -245,6 +260,25 @@ extern "C" {
         for(int i = 0; i < 16; i++) {
             matrix[i] = outMatrix[i];
         }
+
+        return Val_unit;
+    }
+
+    CAMLprim value
+    caml_mat4_transform_vec3(value vDest, value vVec, value vMat) {
+        float* pDestVec3 = (float*)(Data_custom_val(vDest));
+        float* pVec3 = (float*)(Data_custom_val(vVec));
+        float* pMatrix = (float*)(Data_custom_val(vMat));
+
+        /* glm::vec3 glm_vec = glm::make_vec3(pVec3); */
+        /* glm::mat4 glm_matrix = glm::make_mat4(pMatrix); */
+
+        /* glm::vec3 result = glm_matrix * glm_vec; */
+        /* const float* pResult = (const float*)(glm::value_ptr(result)); */
+
+        /* for(int i = 0; i < 3; i++) { */
+        /*     pDestVec3[i] = pResult[i]; */
+        /* } */
 
         return Val_unit;
     }
