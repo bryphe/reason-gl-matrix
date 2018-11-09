@@ -270,15 +270,15 @@ extern "C" {
         float* pVec3 = (float*)(Data_custom_val(vVec));
         float* pMatrix = (float*)(Data_custom_val(vMat));
 
-        /* glm::vec3 glm_vec = glm::make_vec3(pVec3); */
-        /* glm::mat4 glm_matrix = glm::make_mat4(pMatrix); */
+        glm::vec4 glm_vec = glm::vec4(pVec3[0], pVec3[1], pVec3[2], 1.0);
+        glm::mat4 glm_matrix = glm::make_mat4(pMatrix);
 
-        /* glm::vec3 result = glm_matrix * glm_vec; */
-        /* const float* pResult = (const float*)(glm::value_ptr(result)); */
+        glm::vec4 result = glm_matrix * glm_vec;
+        const float* pResult = (const float*)(glm::value_ptr(result));
 
-        /* for(int i = 0; i < 3; i++) { */
-        /*     pDestVec3[i] = pResult[i]; */
-        /* } */
+        for(int i = 0; i < 3; i++) {
+            pDestVec3[i] = pResult[i];
+        }
 
         return Val_unit;
     }
