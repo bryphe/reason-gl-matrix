@@ -1,19 +1,28 @@
 open Reglm;
 
+module Angle = Reglm.Angle;
+
 /*MAT4*/
-let assertFloatsEqual = (expected, actual) => {
-    let equal = abs_float(expected -. actual) < 0.00001;
-
-    print_endline ("[assertFloatsEqual] Expected: " ++ string_of_float(expected) ++ " Actual: " ++ string_of_float(actual));
-    assert(equal);
-};
-
 let assertMat4 = (expected, actual) => {
     for (i in 0 to 15) {
         let expectedValue = expected[i];
         let actualValue = Mat4.get(actual, i);
-        assertFloatsEqual(expectedValue, actualValue);
+        Helpers.assertFloatsEqual(expectedValue, actualValue);
     };
+};
+
+let assertVec3 = (expected, actual) => {
+    let expectedX = Vec3.get_x(expected);
+    let expectedY = Vec3.get_y(expected);
+    let expectedZ = Vec3.get_z(expected);
+
+    let actualX = Vec3.get_x(actual);
+    let actualY = Vec3.get_y(actual);
+    let actualZ = Vec3.get_z(actual);
+
+    Helpers.assertFloatsEqual(expectedX, actualX);
+    Helpers.assertFloatsEqual(expectedY, actualY);
+    Helpers.assertFloatsEqual(expectedZ, actualZ);
 };
 
 /* simple test for identity matrix */
@@ -56,19 +65,34 @@ let pi = acos(-1.);
 /* rotate */
 let () = {
     let m = Mat4.create();
-    let rad = pi *. 0.5;
+    let rad = Angle.from_radians(pi *. 0.5);
     let axis = Vec3.create(1., 0., 0.);
 
     Mat4.rotate(m, rad, axis);
 
     let expectedResult = [|
     1.0, 0., 0., 0.,
-    0., cos(rad), sin(rad), 0.,
-    0., -1. *. sin(rad), cos(rad), 0.,
+    0., Angle.cos(rad), Angle.sin(rad), 0.,
+    0., -1. *. Angle.sin(rad), Angle.cos(rad), 0.,
     0., 0., 0., 1.
     |];
 
     assertMat4(expectedResult, m);
+};
+
+/* transformVec3 */
+let () = {
+    let m = Mat4.create();
+    Mat4.fromRotation(m, Angle.from_radians(pi *. 0.5), Vec3.forward());
+    let v = Vec3.up();
+    Mat4.transformVec3(v, v, m);
+
+    print_endline ("X: " ++ string_of_float(Vec3.get_x(v)));
+    print_endline ("Y: " ++ string_of_float(Vec3.get_y(v)));
+    print_endline ("Z: " ++ string_of_float(Vec3.get_z(v)));
+
+    let expected = Vec3.left();
+    assertVec3(expected, v);
 };
 
 /* lookAt */
