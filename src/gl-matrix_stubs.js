@@ -18,6 +18,11 @@ function caml_mat4_fromTranslation(matrix, v) {
     return joo_global_object.mat4.fromTranslation(matrix, v);
 }
 
+// Provides: caml_mat4_identity
+function caml_mat4_identity(matrix) {
+    return joo_global_object.mat4.identity(matrix);
+}
+
 // Provides: caml_mat4_fromScaling
 function caml_mat4_fromScaling(matrix, v) {
     return joo_global_object.mat4.fromScaling(matrix, v);
@@ -26,6 +31,11 @@ function caml_mat4_fromScaling(matrix, v) {
 // Provides: caml_mat4_lookat
 function caml_mat4_lookat(matrix, eye, center, up) {
     return joo_global_object.mat4.lookAt(matrix, eye, center, up);
+}
+
+// Provides: caml_mat4_transform_vec3
+function caml_mat4_transform_vec3(dest, src, mat) {
+    return joo_global_object.vec3.transformMat4(dest, src, mat);
 }
 
 // Provides: caml_mat4_rotate

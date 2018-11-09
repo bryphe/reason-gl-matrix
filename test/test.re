@@ -11,6 +11,20 @@ let assertMat4 = (expected, actual) => {
     };
 };
 
+let assertVec3 = (expected, actual) => {
+    let expectedX = Vec3.get_x(expected);
+    let expectedY = Vec3.get_y(expected);
+    let expectedZ = Vec3.get_z(expected);
+
+    let actualX = Vec3.get_x(actual);
+    let actualY = Vec3.get_y(actual);
+    let actualZ = Vec3.get_z(actual);
+
+    Helpers.assertFloatsEqual(expectedX, actualX);
+    Helpers.assertFloatsEqual(expectedY, actualY);
+    Helpers.assertFloatsEqual(expectedZ, actualZ);
+};
+
 /* simple test for identity matrix */
 let () = {
     let expectedMatrix = [|
@@ -64,6 +78,21 @@ let () = {
     |];
 
     assertMat4(expectedResult, m);
+};
+
+/* transformVec3 */
+let () = {
+    let m = Mat4.create();
+    Mat4.fromRotation(m, Angle.from_radians(pi *. 0.5), Vec3.forward());
+    let v = Vec3.up();
+    Mat4.transformVec3(v, v, m);
+
+    print_endline ("X: " ++ string_of_float(Vec3.get_x(v)));
+    print_endline ("Y: " ++ string_of_float(Vec3.get_y(v)));
+    print_endline ("Z: " ++ string_of_float(Vec3.get_z(v)));
+
+    let expected = Vec3.left();
+    assertVec3(expected, v);
 };
 
 /* lookAt */

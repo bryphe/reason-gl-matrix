@@ -20,4 +20,4 @@ let down = () => create(0., -1., 0.);
 let forward = () => create(0., 0., 1.0);
 let left = () => create(-1., 0., 0.);
 let right = () => create(1., 0., 0.);
-let up = () => create(0., 0., 0.);
+let up = () => create(0., 1., 0.);
