@@ -1,6 +1,9 @@
 open Reglm;
 
-let () = {
+open Rejest;
+
+test("Quat", () =>
+  test("create", () => {
     let q = Quat.create(0., 1., 2., 3.);
 
     let x = Quat.get_x(q);
@@ -8,8 +11,9 @@ let () = {
     let z = Quat.get_z(q);
     let w = Quat.get_w(q);
 
-    assert(x == 0.);
-    assert(y == 1.);
-    assert(z == 2.);
-    assert(w == 3.);
-};
+    expect(x).toEqual(0.);
+    expect(y).toEqual(1.);
+    expect(z).toEqual(2.);
+    expect(w).toEqual(3.);
+  })
+);

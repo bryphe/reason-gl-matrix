@@ -4,7 +4,8 @@
   "description": "Cross-platform high-performance vector and matrix math for OpenGL",
   "license": "MIT",
   "scripts": {
-    "test:js": "esy b dune build ./test/bin/test_runner.bc.js && node bin/test-jsoo.js",
+    "build:js": "esy b dune build ./test/bin/test_runner.bc.js",
+    "test:js": "node bin/test-jsoo.js",
     "test:native": "esy b dune runtest",
     "test": "npm run test:js && npm run test:native"
   },
@@ -20,7 +21,8 @@
     "@esy-ocaml/reason": "*",
     "refmterr": "*",
     "@opam/js_of_ocaml-compiler": "*",
-    "ocaml": "~4.6.0"
+    "ocaml": "~4.6.0",
+    "rejest": "^1.2.0"
   },
   "devDependencies": {
     "@esy-ocaml/merlin": "*",

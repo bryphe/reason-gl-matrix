@@ -1,6 +1,8 @@
 open Reglm;
+open Rejest;
 
-let () = {
+test("Vec4", () => {
+  test("zero()", () => {
     let v = Vec4.zero();
 
     let x = Vec4.get_x(v);
@@ -8,21 +10,22 @@ let () = {
     let z = Vec4.get_z(v);
     let w = Vec4.get_w(v);
 
-    assert(x == 0.);
-    assert(y == 0.);
-    assert(z == 0.);
-    assert(w == 0.);
-};
+    expect(x).toEqual(0.);
+    expect(y).toEqual(0.);
+    expect(z).toEqual(0.);
+    expect(w).toEqual(0.);
+  });
 
-let () = {
+  test("create()", () => {
     let v = Vec4.create(1., 2., 3., 4.);
     let x = Vec4.get_x(v);
     let y = Vec4.get_y(v);
     let z = Vec4.get_z(v);
     let w = Vec4.get_w(v);
 
-    assert(x == 1.);
-    assert(y == 2.);
-    assert(z == 3.);
-    assert(w == 4.);
-};
+    expect(x).toEqual(1.);
+    expect(y).toEqual(2.);
+    expect(z).toEqual(3.);
+    expect(w).toEqual(4.);
+  });
+});
