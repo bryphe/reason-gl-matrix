@@ -1,6 +1,8 @@
 open Reglm;
 open Rejest;
 
+open Helpers;
+
 test("Vec4", () => {
   test("zero()", () => {
     let v = Vec4.zero();
@@ -10,10 +12,10 @@ test("Vec4", () => {
     let z = Vec4.get_z(v);
     let w = Vec4.get_w(v);
 
-    expect(x).toEqual(0.);
-    expect(y).toEqual(0.);
-    expect(z).toEqual(0.);
-    expect(w).toEqual(0.);
+    assertFloatsEqual(x, 0.);
+    assertFloatsEqual(y, 0.);
+    assertFloatsEqual(z, 0.);
+    assertFloatsEqual(w, 0.);
   });
 
   test("create()", () => {
@@ -23,9 +25,9 @@ test("Vec4", () => {
     let z = Vec4.get_z(v);
     let w = Vec4.get_w(v);
 
-    expect(x).toEqual(1.);
-    expect(y).toEqual(2.);
-    expect(z).toEqual(3.);
-    expect(w).toEqual(4.);
+    assertFloatsEqual(x, 1.);
+    assertFloatsEqual(y, 2.);
+    assertFloatsEqual(z, 3.);
+    assertFloatsEqual(w, 4.);
   });
 });
