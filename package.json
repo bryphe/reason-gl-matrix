@@ -22,11 +22,11 @@
     "@esy-ocaml/reason": "*",
     "refmterr": "*",
     "@opam/js_of_ocaml-compiler": "*",
-    "ocaml": "~4.6.0",
-    "rejest": "^1.2.0"
+    "ocaml": "^4.6.0",
+    "rejest": "^1.3.0"
   },
   "devDependencies": {
-    "@esy-ocaml/merlin": "*",
-    "ocaml": "~4.6.0"
+    "@opam/merlin": "*",
+    "ocaml": "^4.6.0"
   }
 }
