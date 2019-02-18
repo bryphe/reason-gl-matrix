@@ -1,7 +1,7 @@
 type t;
 external create_internal: unit => t = "caml_vec3_create";
 
-external set: (t, float, float, float) => unit = "caml_vec3_set";
+[@noalloc] external set: (t, float, float, float) => unit = "caml_vec3_set";
 external get_x: t => float = "caml_vec3_get_x";
 external get_y: t => float = "caml_vec3_get_y";
 external get_z: t => float = "caml_vec3_get_z";

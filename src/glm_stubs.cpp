@@ -286,7 +286,7 @@ extern "C" {
     CAMLprim value
     caml_mat4_rotate(value vMat, value vRad, value vAxis) {
         float* pMatrix = (float*)(Data_custom_val(vMat));
-        float fRad = Double_val(vRad); 
+        float fRad = Double_val(vRad);
         float* pAxis = (float*)(Data_custom_val(vAxis));
 
         glm::vec3 glm_vec = glm::make_vec3(pAxis);

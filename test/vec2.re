@@ -6,8 +6,8 @@ let () = {
   let x = Vec2.get_x(v);
   let y = Vec2.get_y(v);
 
-  assert(x == 0.);
-  assert(y == 0.);
+  Helpers.assertFloatsEqual(0., x);
+  Helpers.assertFloatsEqual(0., y);
 };
 
 let () = {
@@ -15,6 +15,6 @@ let () = {
   let x = Vec2.get_x(v);
   let y = Vec2.get_y(v);
 
-  assert(x == 1.);
-  assert(y == 2.);
+  Helpers.assertFloatsEqual(1., x);
+  Helpers.assertFloatsEqual(2., y);
 };
