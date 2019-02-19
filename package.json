@@ -1,6 +1,6 @@
 {
   "name": "reason-gl-matrix",
-  "version": "0.9.9302",
+  "version": "0.9.9303",
   "description": "Cross-platform high-performance vector and matrix math for OpenGL",
   "license": "MIT",
   "scripts": {
@@ -10,7 +10,7 @@
     "test": "npm run test:js && npm run test:native"
   },
   "esy": {
-    "build": ["refmterr dune build"],
+    "build": ["refmterr dune build -p reglm"],
     "buildsInSource": "_build"
   },
   "resolutions": {
@@ -22,12 +22,11 @@
     "@esy-ocaml/reason": "*",
     "refmterr": "*",
     "@opam/js_of_ocaml-compiler": "*",
-    "ocaml": "^4.6.0",
+    "ocaml": ">=4.4.0",
     "rejest": "^1.3.0"
   },
   "devDependencies": {
     "@opam/merlin": "*",
-    "ocaml": "^4.6.0",
-    "reperf": "*"
+    "ocaml": ">=4.4.0"
   }
 }
