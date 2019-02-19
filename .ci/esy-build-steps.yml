@@ -10,3 +10,6 @@ steps:
   - script: esy test:native
   - script: esy build:js
   - script: esy test:js
+  - script: esy @bench install
+  - script: esy @bench build
+  - script: esy @bench x reglm-bench
