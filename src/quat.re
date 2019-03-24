@@ -1,6 +1,6 @@
 type t;
 
-external create: (float, float, float, float) => t = "caml_quat_create";
+external create: ([@unboxed] float, [@unboxed] float, [@unboxed] float, [@unboxed] float) => t = "caml_quat_create_byte" "caml_quat_create";
 
 let zero = () => {
     create(0., 0., 0., 0.);

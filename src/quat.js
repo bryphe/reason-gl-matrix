@@ -1,5 +1,5 @@
-// Provides: caml_quat_create
-function caml_quat_create(x, y, z, w) {
+// Provides: caml_quat_create_byte
+function caml_quat_create_byte(x, y, z, w) {
     return joo_global_object.quat.fromValues(x, y, z, w);
 }
 

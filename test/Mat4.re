@@ -119,13 +119,9 @@ test("Mat4", () => {
 
   /* lookAt */
   test("lookAt", () => {
-    let vEye = Vec3.zero();
-    let vCenter = Vec3.zero();
-    let vUp = Vec3.zero();
-
-    Vec3.set(vEye, 0., 0., 1.);
-    Vec3.set(vCenter, 0., 0., -1.);
-    Vec3.set(vUp, 0., 1., 0.);
+    let vEye = Vec3.create(0., 0., 1.);
+    let vCenter = Vec3.create(0., 0., -1.);
+    let vUp = Vec3.create(0., 1., 0.);
 
     let mResult = Mat4.create();
     Mat4.lookAt(mResult, vEye, vCenter, vUp);

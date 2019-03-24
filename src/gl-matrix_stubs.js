@@ -53,19 +53,19 @@ function caml_mat4_ortho_bytecode(matrix, left, right, bottom, top, near, far) {
     return joo_global_object.mat4.ortho(matrix, left, right, bottom, top, near, far);
 }
 
-// Provides: caml_vec2_create
-function caml_vec2_create() {
-    return joo_global_object.vec2.create();
+// Provides: caml_vec2_create_byte
+function caml_vec2_create_byte(x, y) {
+    return joo_global_object.vec2.fromValues(x, y);
 }
 
-// Provides: caml_vec3_create
-function caml_vec3_create() {
-    return joo_global_object.vec3.create();
+// Provides: caml_vec3_create_byte
+function caml_vec3_create_byte(x, y, z) {
+    return joo_global_object.vec3.fromValues(x, y, z);
 }
 
-// Provides: caml_vec4_create
-function caml_vec4_create() {
-    return joo_global_object.vec4.create();
+// Provides: caml_vec4_create_byte
+function caml_vec4_create_byte(x, y, z, w) {
+    return joo_global_object.vec4.fromValues(x, y, z, w);
 }
 
 // Provides: caml_vec3_get_x
@@ -86,25 +86,4 @@ function caml_vec3_get_z(v) {
 // Provides: caml_vec4_get_w
 function caml_vec4_get_w(v) {
     return v[3];
-}
-
-// Provides: caml_vec2_set
-function caml_vec2_set(v, x, y) {
-    v[0] = x;
-    v[1] = y;
-}
-
-// Provides: caml_vec3_set
-function caml_vec3_set(v, x, y, z) {
-    v[0] = x;
-    v[1] = y;
-    v[2] = z;
-}
-
-// Provides: caml_vec4_set
-function caml_vec4_set(v, x, y, z, w) {
-    v[0] = x;
-    v[1] = y;
-    v[2] = z;
-    v[3] = w;
 }

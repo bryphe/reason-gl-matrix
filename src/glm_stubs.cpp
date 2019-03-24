@@ -11,15 +11,6 @@
 #include <gtc/type_ptr.hpp>
 
 extern "C" {
-    CAMLprim value
-    caml_print_hello(value unit)
-    {
-        glm::vec4 vec(1.0f, 0.0f, 0.0f, 1.0f);
-        printf("Vector: %f %f %f\n", vec.x, vec.y, vec.z);
-        printf("Hello \n");
-        return Val_unit;
-    }
-
     static struct custom_operations objst_custom_ops = {
             identifier: (char*)"obj_st handling",
             finalize:    custom_finalize_default,
@@ -30,9 +21,9 @@ extern "C" {
     };
 
     CAMLprim value
-    caml_vec2_create(value unit) {
+    caml_vec2_create(double x, double y) {
         CAMLparam0 ();
-        glm::vec2 vec = glm::vec2();
+        glm::vec2 vec(x, y);
         float* vptr = (glm::value_ptr(vec));
         CAMLlocal1(v);
         v = caml_alloc_custom(&objst_custom_ops, sizeof(float) * 2, 0, 1);
@@ -40,11 +31,18 @@ extern "C" {
         CAMLreturn(v);
     }
 
+    CAMLprim value
+    caml_vec2_create_byte(value vX, value vY) {
+        CAMLparam2(vX, vY);
+        CAMLlocal1(v);
+        v = caml_vec2_create(Double_val(vX), Double_val(vY));
+        CAMLreturn(v);
+    }
 
     CAMLprim value
-    caml_vec3_create(value unit) {
+    caml_vec3_create(double x, double y, double z) {
         CAMLparam0 ();
-        glm::vec3 vec = glm::vec3();
+        glm::vec3 vec(x, y, z);
         float* vptr = (glm::value_ptr(vec));
         CAMLlocal1(v);
         v = caml_alloc_custom(&objst_custom_ops, sizeof(float) * 3, 0, 1);
@@ -53,9 +51,17 @@ extern "C" {
     }
 
     CAMLprim value
-    caml_vec4_create(value unit) {
+    caml_vec3_create_byte(value vX, value vY, value vZ) {
+        CAMLparam3(vX, vY, vZ);
+        CAMLlocal1(v);
+        v = caml_vec3_create(Double_val(vX), Double_val(vY), Double_val(vZ));
+        CAMLreturn(v);
+    }
+
+    CAMLprim value
+    caml_vec4_create(double x, double y, double z, double w) {
         CAMLparam0 ();
-        glm::vec4 vec = glm::vec4();
+        glm::vec4 vec(x, y, z, w);
         float* vptr = (glm::value_ptr(vec));
         CAMLlocal1(v);
         v = caml_alloc_custom(&objst_custom_ops, sizeof(float) * 4, 0, 1);
@@ -64,13 +70,21 @@ extern "C" {
     }
 
     CAMLprim value
-    caml_quat_create(value vX, value vY, value vZ, value vW) {
+    caml_vec4_create_byte(value vX, value vY, value vZ, value vW) {
         CAMLparam4(vX, vY, vZ, vW);
+        CAMLlocal1(v);
+        v = caml_vec4_create(Double_val(vX), Double_val(vY), Double_val(vZ), Double_val(vW));
+        CAMLreturn(v);
+    }
+
+    CAMLprim value
+    caml_quat_create(double x, double y, double z, double w) {
+        CAMLparam0();
         float pQuat[4];
-        pQuat[0] = Double_val(vW);
-        pQuat[1] = Double_val(vX);
-        pQuat[2] = Double_val(vY);
-        pQuat[3] = Double_val(vZ);
+        pQuat[0] = w;
+        pQuat[1] = x;
+        pQuat[2] = y;
+        pQuat[3] = z;
 
         CAMLlocal1(q);
         q = caml_alloc_custom(&objst_custom_ops, sizeof(float) * 4, 0, 1);
@@ -79,40 +93,13 @@ extern "C" {
     };
 
     CAMLprim value
-    caml_vec2_set(value vVec, value vX, value vY) {
-        float *vptr = (float *)Data_custom_val(vVec);
-        float x = Double_val(vX);
-        float y = Double_val(vY);
-        vptr[0] = x;
-        vptr[1] = y;
-        return Val_unit;
-    }
+    caml_quat_create_byte(value vX, value vY, value vZ, value vW) {
+        CAMLparam4(vX, vY, vZ, vW);
+        CAMLlocal1(q); 
 
-    CAMLprim value
-    caml_vec3_set(value vVec, value vX, value vY, value vZ) {
-        float *vptr = (float *)Data_custom_val(vVec);
-        float x = Double_val(vX);
-        float y = Double_val(vY);
-        float z = Double_val(vZ);
-        vptr[0] = x;
-        vptr[1] = y;
-        vptr[2] = z;
-        return Val_unit;
-    }
-
-    CAMLprim value
-    caml_vec4_set(value vVec, value vX, value vY, value vZ, value vW) {
-        float *vptr = (float *)Data_custom_val(vVec);
-        float x = Double_val(vX);
-        float y = Double_val(vY);
-        float z = Double_val(vZ);
-        float w = Double_val(vW);
-        vptr[0] = x;
-        vptr[1] = y;
-        vptr[2] = z;
-        vptr[3] = w;
-        return Val_unit;
-    }
+        q = caml_quat_create(Double_val(vX), Double_val(vY), Double_val(vZ), Double_val(vW));
+        CAMLreturn(q);
+    };
 
     double getByIndex(value vDat, int index) {
         float *vf = (float *)Data_custom_val(vDat);
