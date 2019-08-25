@@ -1,6 +1,6 @@
 {
   "name": "reason-gl-matrix",
-  "version": "0.9.9304",
+  "version": "0.9.9305",
   "description": "Cross-platform high-performance vector and matrix math for OpenGL",
   "license": "MIT",
   "scripts": {
