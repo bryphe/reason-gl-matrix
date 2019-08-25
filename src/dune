@@ -3,4 +3,4 @@
     (public_name reglm)
     (js_of_ocaml (javascript_files gl-matrix_stubs.js quat.js))
     (cxx_names glm_stubs)
-    (cxx_flags ((-I ./../../../include/glm) (-fno-exceptions) (-fno-rtti) (-lstdc++) (-x c++))))
+    (cxx_flags ((-I ./../../../include/glm) (-fno-exceptions) (-fPIC) (-fno-rtti) (-lstdc++) (-x c++))))

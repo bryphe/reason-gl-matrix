@@ -25,7 +25,7 @@ let vec3Create = () => {
 };
 
 let vec2Create = () => {
-    let _ = Vec3.create(1., 2.);
+    let _ = Vec2.create(1., 2.);
 };
 
 bench(~name="Mat4: Create", ~f=mat4Create, ());

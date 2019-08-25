@@ -22,9 +22,9 @@ let to_degrees = (angle: t) => {
 };
 
 let cos = (angle: t) => {
-    Pervasives.cos(to_radians(angle));
+    cos(to_radians(angle));
 };
 
 let sin = (angle: t) => {
-    Pervasives.sin(to_radians(angle));
+    sin(to_radians(angle));
 };

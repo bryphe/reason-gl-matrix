@@ -7,7 +7,7 @@
     "build:js": "esy b dune build ./test/bin/test_runner.bc.js",
     "test:js": "node bin/test-jsoo.js",
     "test:native": "esy b dune runtest",
-    "test": "npm run test:js && npm run test:native"
+    "test": "npm run build:js && npm run test:js && npm run test:native"
   },
   "esy": {
     "build": ["refmterr dune build -p reglm"],
@@ -15,8 +15,8 @@
   },
   "resolutions": {
     "@esy-ocaml/esy-installer": "0.0.1",
-    "@opam/cmdliner": "1.0.2",
-    "@opam/dune": "1.7.3"
+    "@opam/cmdliner": "1.0.4",
+    "@opam/camomile": "1.0.1"
   },
   "dependencies": {
     "@opam/dune": "*",
