@@ -2,6 +2,7 @@
   "name": "reason-gl-matrix",
   "version": "0.9.9305",
   "description": "Cross-platform high-performance vector and matrix math for OpenGL",
+  "url": "https://github.com/bryphe/reason-gl-matrix",
   "license": "MIT",
   "scripts": {
     "build:js": "esy b dune build ./test/bin/test_runner.bc.js",
