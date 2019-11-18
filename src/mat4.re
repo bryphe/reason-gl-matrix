@@ -26,6 +26,10 @@ let rotate = (mat: t, ang: Angle.t, vec: Vec3.t) => {
 [@noalloc] external ortho: (t, float, float, float, float, float, float) => unit = "caml_mat4_ortho_bytecode" "caml_mat4_ortho_native";
 [@noalloc] external perspective: (t, radians, float, float, float) => unit = "caml_mat4_perspective";
 
+external createFromTranslationAndScale:
+    ([@unboxed] float, [@unboxed] float, [@unboxed] float, [@unboxed] float,
+    [@unboxed] float, [@unboxed] float) => t = "caml_mat4_createFromTranslationAndScale_byte" "caml_mat4_createFromTranslationAndScale";
+
 let fromRotation = (mat: t, ang: Angle.t, vec: Vec3.t) => {
     identity(mat);
     rotate(mat, ang, vec);
@@ -46,3 +50,13 @@ let rotateY = (mat: t, ang: Angle.t) => {
 let rotateZ = (mat: t, ang: Angle.t) => {
     rotate(mat, ang, _forward);
 };
+
+let toString = (mat) => {
+
+  let str = ref("");
+  for (i in 0 to 15) {
+    let v = get(mat, i);
+    str := str^ ++ "\nIndex: " ++ string_of_int(i) ++ " Value: " ++ string_of_float(v);
+  }
+  str^;
+}

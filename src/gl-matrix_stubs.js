@@ -10,6 +10,19 @@ function caml_mat4_create() {
     return joo_global_object.mat4.create();
 }
 
+// Provides: caml_mat4_createFromTranslationAndScale_byte
+function caml_mat4_createFromTranslationAndScale_byte(scaleX, scaleY, scaleZ, translateX, translateY, translateZ) {
+    var ident = joo_global_object.mat4.create();
+    ident[0] = scaleX;
+    ident[5] = scaleY;
+    ident[10] = scaleZ;
+    ident[12] = translateX;
+    ident[13] = translateY;
+    ident[14] = translateZ;
+    ident[15] = 1;
+    return ident;
+}
+
 // Provides: caml_mat4_get
 function caml_mat4_get(matrix, index) {
     return matrix[index];

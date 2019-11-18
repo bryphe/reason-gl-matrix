@@ -12,6 +12,13 @@ let assertMat4 = (expect, expected, actual) =>
     expect.float(expectedValue).toBeCloseTo(actualValue);
   };
 
+let assertMats4 = (expect, expected, actual) =>
+  for (i in 0 to 15) {
+    let expectedValue = Mat4.get(expected, i);
+    let actualValue = Mat4.get(actual, i);
+    expect.float(expectedValue).toBeCloseTo(actualValue);
+  };
+
 let assertVec3 = (expect, expected, actual) => {
   let expectedX = Vec3.get_x(expected);
   let expectedY = Vec3.get_y(expected);
@@ -101,6 +108,30 @@ describe("Mat4", ({test, _}) => {
 
     assertMat4(expect, expectedResult, m);
   });
+
+  test("createFromTranslationAndScale", ({expect, _}) => {
+    let m = Mat4.createFromTranslationAndScale(
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      7.0,
+    );
+
+    let scaleVec = Vec3.create(2.0, 3.0, 4.0);
+    let scaleM = Mat4.create();
+    Mat4.fromScaling(scaleM, scaleVec);
+
+    let translateVec = Vec3.create(5., 6., 7.);
+    let translateM = Mat4.create();
+    Mat4.fromTranslation(translateM, translateVec)
+    let expectedM = Mat4.create();
+    Mat4.multiply(expectedM, translateM, scaleM);
+
+    assertMats4(expect, expectedM, m);
+    prerr_endline(Mat4.toString(m));
+  })
 
   /* transformVec3 */
   test("transformVec3", ({expect, _}) => {
