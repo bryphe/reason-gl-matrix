@@ -110,14 +110,7 @@ describe("Mat4", ({test, _}) => {
   });
 
   test("createFromTranslationAndScale", ({expect, _}) => {
-    let m = Mat4.createFromTranslationAndScale(
-      2.0,
-      3.0,
-      4.0,
-      5.0,
-      6.0,
-      7.0,
-    );
+    let m = Mat4.createFromTranslationAndScale(2.0, 3.0, 4.0, 5.0, 6.0, 7.0);
 
     let scaleVec = Vec3.create(2.0, 3.0, 4.0);
     let scaleM = Mat4.create();
@@ -125,13 +118,13 @@ describe("Mat4", ({test, _}) => {
 
     let translateVec = Vec3.create(5., 6., 7.);
     let translateM = Mat4.create();
-    Mat4.fromTranslation(translateM, translateVec)
+    Mat4.fromTranslation(translateM, translateVec);
     let expectedM = Mat4.create();
     Mat4.multiply(expectedM, translateM, scaleM);
 
     assertMats4(expect, expectedM, m);
     prerr_endline(Mat4.toString(m));
-  })
+  });
 
   /* transformVec3 */
   test("transformVec3", ({expect, _}) => {

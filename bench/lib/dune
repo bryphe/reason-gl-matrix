@@ -1,6 +1,5 @@
 (library
-    (name ReglmBench)
-    (public_name reglm-bench.lib)
-    (ocamlopt_flags -linkall)
-    (libraries reglm reperf.lib)
-)
+ (name ReglmBench)
+ (public_name reglm-bench.lib)
+ (ocamlopt_flags -linkall)
+ (libraries reglm reperf.lib))

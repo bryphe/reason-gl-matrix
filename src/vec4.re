@@ -1,7 +1,8 @@
 type t;
 
-
-external create: ([@unboxed] float, [@unboxed] float, [@unboxed] float, [@unboxed] float) => t = "caml_vec4_create_byte" "caml_vec4_create";
+external create:
+  ([@unboxed] float, [@unboxed] float, [@unboxed] float, [@unboxed] float) => t =
+  "caml_vec4_create_byte" "caml_vec4_create";
 
 let zero = () => create(0., 0., 0., 0.);
 

@@ -1,5 +1,6 @@
 (library
-    (name Test)
-    (library_flags (-linkall -g))
-    (modules (:standard))
-    (libraries reglm rely.lib))
+ (name Test)
+ (library_flags
+  (-linkall -g))
+ (modules (:standard))
+ (libraries reglm rely.lib))

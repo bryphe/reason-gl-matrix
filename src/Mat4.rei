@@ -13,7 +13,8 @@ let create: unit => t;
  [Mat4.multipy(out, translationMatrix, scaleMatrix)]
  but more efficient.
 */
-let createFromTranslationAndScale: (float,float,float,float, float, float) => t;
+let createFromTranslationAndScale:
+  (float, float, float, float, float, float) => t;
 
 let get: (t, int) => float;
 let identity: t => unit;
@@ -35,6 +36,5 @@ let ortho: (t, float, float, float, float, float, float) => unit;
 let perspective: (t, radians, float, float, float) => unit;
 
 let transformVec3: (Vec3.t, Vec3.t, t) => unit;
-
 
 let toString: t => string;
