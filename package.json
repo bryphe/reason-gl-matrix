@@ -5,30 +5,28 @@
   "url": "https://github.com/bryphe/reason-gl-matrix",
   "license": "MIT",
   "scripts": {
-    "build:js": "esy b dune build ./test/bin/test_runner.bc.js",
+    "build:js": "esy b dune build --profile=release ./test/bin/test_runner.bc.js",
     "test:js": "node bin/test-jsoo.js",
-    "test:native": "esy b dune runtest",
-    "test": "npm run build:js && npm run test:js && npm run test:native"
+    "test:native": "esy b dune exec test/bin/test_runner.exe",
+    "test": "esy build:js && esy test:native && esy test:js"
   },
   "esy": {
-    "build": ["refmterr dune build -p reglm"],
+    "build": [
+      "dune build -p reglm"
+    ],
+    "buildDev": [
+      "refmterr dune build -p reglm"
+    ],
     "buildsInSource": "_build"
   },
-  "resolutions": {
-    "@esy-ocaml/esy-installer": "0.0.1",
-    "@opam/cmdliner": "1.0.4",
-    "@opam/camomile": "1.0.1"
-  },
   "dependencies": {
-    "@opam/dune": "*",
-    "@esy-ocaml/reason": "*",
-    "refmterr": "*",
-    "@opam/js_of_ocaml-compiler": "*",
-    "ocaml": ">=4.4.0",
-    "rejest": "^1.3.0"
+    "@esy-ocaml/reason": "^3.5.2",
+    "@opam/dune": "1.11.4",
+    "@opam/js_of_ocaml-compiler": "3.5.0"
   },
   "devDependencies": {
-    "@opam/merlin": "*",
-    "ocaml": ">=4.4.0"
+    "@opam/merlin": "3.3.2",
+    "@reason-native/rely": "^3.1.0",
+    "refmterr": "^3.2.2"
   }
 }

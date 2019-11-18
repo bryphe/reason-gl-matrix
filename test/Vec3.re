@@ -1,27 +1,28 @@
 open Reglm;
+open TestFramework;
 
-open Rejest;
-
-open Helpers;
-
-test("vec3", () => {
-  test("zero()", () => {
+describe("Vec3", ({test, _}) => {
+  test("zero()", ({expect, _}) => {
     let v = Vec3.zero();
+
     let x = Vec3.get_x(v);
     let y = Vec3.get_y(v);
     let z = Vec3.get_z(v);
-    assertFloatsEqual(x, 0.0);
-    assertFloatsEqual(y, 0.0);
-    assertFloatsEqual(z, 0.0);
+
+    expect.float(x).toBeCloseTo(0.0);
+    expect.float(y).toBeCloseTo(0.0);
+    expect.float(z).toBeCloseTo(0.0);
   });
 
-  test("create()", () => {
+  test("create()", ({expect, _}) => {
     let v = Vec3.create(10., 11., 12.);
+
     let x = Vec3.get_x(v);
     let y = Vec3.get_y(v);
     let z = Vec3.get_z(v);
-    assertFloatsEqual(x, 10.0);
-    assertFloatsEqual(y, 11.0);
-    assertFloatsEqual(z, 12.0);
+
+    expect.float(x).toBeCloseTo(10.0);
+    expect.float(y).toBeCloseTo(11.0);
+    expect.float(z).toBeCloseTo(12.0);
   });
 });

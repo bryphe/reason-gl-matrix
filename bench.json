@@ -1,13 +1,15 @@
 {
   "source": "./package.json",
   "override": {
-      "build": ["dune build --root . -j4"],
-      "dependencies": {
-        "reperf": "*"
-      },
-      "install": [
-          "esy-installer reglm.install",
-          "esy-installer reglm-bench.install"
-      ]
+    "build": [
+      "dune build --root . -j4"
+    ],
+    "dependencies": {
+      "reperf": "^1.4.0"
+    },
+    "install": [
+      "esy-installer reglm.install",
+      "esy-installer reglm-bench.install"
+    ]
   }
 }

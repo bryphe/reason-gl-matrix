@@ -1,9 +1,9 @@
 open Reglm;
 
-open Rejest;
+open TestFramework;
 
-test("Quat", () =>
-  test("create", () => {
+describe("Quat", ({test, _}) =>
+  test("create", ({expect, _}) => {
     let q = Quat.create(0., 1., 2., 3.);
 
     let x = Quat.get_x(q);
@@ -11,9 +11,9 @@ test("Quat", () =>
     let z = Quat.get_z(q);
     let w = Quat.get_w(q);
 
-    expect(x).toEqual(0.);
-    expect(y).toEqual(1.);
-    expect(z).toEqual(2.);
-    expect(w).toEqual(3.);
+    expect.float(x).toBeCloseTo(0.);
+    expect.float(y).toBeCloseTo(1.);
+    expect.float(z).toBeCloseTo(2.);
+    expect.float(w).toBeCloseTo(3.);
   })
 );

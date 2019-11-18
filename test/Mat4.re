@@ -1,18 +1,18 @@
 open Reglm;
-open Rejest;
+open TestFramework;
 
 module Angle = Reglm.Angle;
 let pi = Angle.pi;
 
 /*MAT4*/
-let assertMat4 = (expected, actual) =>
+let assertMat4 = (expect, expected, actual) =>
   for (i in 0 to 15) {
     let expectedValue = expected[i];
     let actualValue = Mat4.get(actual, i);
-    Helpers.assertFloatsEqual(expectedValue, actualValue);
+    expect.float(expectedValue).toBeCloseTo(actualValue);
   };
 
-let assertVec3 = (expected, actual) => {
+let assertVec3 = (expect, expected, actual) => {
   let expectedX = Vec3.get_x(expected);
   let expectedY = Vec3.get_y(expected);
   let expectedZ = Vec3.get_z(expected);
@@ -21,14 +21,14 @@ let assertVec3 = (expected, actual) => {
   let actualY = Vec3.get_y(actual);
   let actualZ = Vec3.get_z(actual);
 
-  Helpers.assertFloatsEqual(expectedX, actualX);
-  Helpers.assertFloatsEqual(expectedY, actualY);
-  Helpers.assertFloatsEqual(expectedZ, actualZ);
+  expect.float(expectedX).toBeCloseTo(actualX);
+  expect.float(expectedY).toBeCloseTo(actualY);
+  expect.float(expectedZ).toBeCloseTo(actualZ);
 };
 
-test("Mat4", () => {
+describe("Mat4", ({test, _}) => {
   /* simple test for identity matrix */
-  test("identity", () => {
+  test("identity", ({expect, _}) => {
     let expectedMatrix = [|
       1.,
       0.,
@@ -48,10 +48,10 @@ test("Mat4", () => {
       1.0,
     |];
 
-    assertMat4(expectedMatrix, Mat4.create());
+    assertMat4(expect, expectedMatrix, Mat4.create());
   });
 
-  test("multiply", () => {
+  test("multiply", ({expect, _}) => {
     let vTranslation = Vec3.create(2., 2., 2.);
     let mTranslation = Mat4.create();
     Mat4.fromTranslation(mTranslation, vTranslation);
@@ -67,13 +67,13 @@ test("Mat4", () => {
     let m13 = Mat4.get(mResult, 13);
     let m14 = Mat4.get(mResult, 14);
     let m15 = Mat4.get(mResult, 15);
-    assert(m03 == 6.);
-    assert(m13 == 8.);
-    assert(m14 == 10.);
-    assert(m15 == 1.);
+    expect.float(m03).toBeCloseTo(6.);
+    expect.float(m13).toBeCloseTo(8.);
+    expect.float(m14).toBeCloseTo(10.);
+    expect.float(m15).toBeCloseTo(1.);
   });
 
-  test("rotate", () => {
+  test("rotate", ({expect, _}) => {
     let m = Mat4.create();
     let rad = Angle.from_radians(pi *. 0.5);
     let axis = Vec3.create(1., 0., 0.);
@@ -99,11 +99,11 @@ test("Mat4", () => {
       1.,
     |];
 
-    assertMat4(expectedResult, m);
+    assertMat4(expect, expectedResult, m);
   });
 
   /* transformVec3 */
-  test("transformVec3", () => {
+  test("transformVec3", ({expect, _}) => {
     let m = Mat4.create();
     Mat4.fromRotation(m, Angle.from_radians(pi *. 0.5), Vec3.forward());
     let v = Vec3.up();
@@ -114,11 +114,11 @@ test("Mat4", () => {
     print_endline("Z: " ++ string_of_float(Vec3.get_z(v)));
 
     let expected = Vec3.left();
-    assertVec3(expected, v);
+    assertVec3(expect, expected, v);
   });
 
   /* lookAt */
-  test("lookAt", () => {
+  test("lookAt", ({expect, _}) => {
     let vEye = Vec3.create(0., 0., 1.);
     let vCenter = Vec3.create(0., 0., -1.);
     let vUp = Vec3.create(0., 1., 0.);
@@ -145,12 +145,12 @@ test("Mat4", () => {
       1.0,
     |];
 
-    assertMat4(expectedMatrix, mResult);
+    assertMat4(expect, expectedMatrix, mResult);
   });
 
   /* perspective */
   /* Test case from: https://github.com/toji/gl-matrix/blob/master/spec/gl-matrix/mat4-spec.js */
-  test("perspective", () => {
+  test("perspective", ({expect, _}) => {
     let mResult = Mat4.create();
     Mat4.perspective(mResult, 45. *. pi /. 180., 640. /. 480., 0.1, 200.);
 
@@ -173,12 +173,12 @@ test("Mat4", () => {
       0.,
     |];
 
-    assertMat4(expectedMatrix, mResult);
+    assertMat4(expect, expectedMatrix, mResult);
   });
 
   /* ortho */
   /* Test case from: https://github.com/toji/gl-matrix/blob/master/spec/gl-matrix/mat4-spec.js */
-  test("ortho", () => {
+  test("ortho", ({expect, _}) => {
     let mResult = Mat4.create();
     Mat4.ortho(mResult, -1., 1., -1., 1., -1., 1.);
 
@@ -201,6 +201,6 @@ test("Mat4", () => {
       1.,
     |];
 
-    assertMat4(expectedMatrix, mResult);
+    assertMat4(expect, expectedMatrix, mResult);
   });
 });

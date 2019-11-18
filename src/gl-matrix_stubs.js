@@ -1,3 +1,10 @@
+// Add our stub while waiting https://github.com/ocsigen/js_of_ocaml/issues/913
+
+//Provides: unix_isatty
+function unix_isatty (f) {
+    return false;
+};
+
 // Provides: caml_mat4_create
 function caml_mat4_create() {
     return joo_global_object.mat4.create();

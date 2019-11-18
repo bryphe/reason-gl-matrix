@@ -1,3 +1,5 @@
 (executable
     (name test_runner)
-    (libraries Test rejest))
+; Remove warning
+    (js_of_ocaml (flags (--disable genprim)))
+    (libraries Test))

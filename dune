@@ -1,3 +1,0 @@
-(alias
-    (name runtest)
-    (action (run ./test/bin/test_runner.exe)))

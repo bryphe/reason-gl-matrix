@@ -63,3 +63,9 @@ typings/
 .merlin
 _build/
 *.install
+
+# esy
+_esy
+
+#dune build folder
+_build
