@@ -12,23 +12,31 @@ external get: (t, int) => float = "caml_mat4_get";
 [@noalloc] external _rotate: (t, radians, Vec3.t) => unit = "caml_mat4_rotate";
 
 let rotate = (mat: t, ang: Angle.t, vec: Vec3.t) => {
-    let a = Angle.to_radians(ang);
-    _rotate(mat, a, vec);
+  let a = Angle.to_radians(ang);
+  _rotate(mat, a, vec);
 };
 
-[@noalloc] external transformVec3: (Vec3.t, Vec3.t, t) => unit = "caml_mat4_transform_vec3";
+[@noalloc]
+external transformVec3: (Vec3.t, Vec3.t, t) => unit =
+  "caml_mat4_transform_vec3";
 
-[@noalloc] external fromTranslation: (t, Vec3.t) => unit = "caml_mat4_fromTranslation";
+[@noalloc]
+external fromTranslation: (t, Vec3.t) => unit = "caml_mat4_fromTranslation";
 [@noalloc] external fromScaling: (t, Vec3.t) => unit = "caml_mat4_fromScaling";
 
-[@noalloc] external lookAt: (t, Vec3.t, Vec3.t, Vec3.t) => unit = "caml_mat4_lookat";
+[@noalloc]
+external lookAt: (t, Vec3.t, Vec3.t, Vec3.t) => unit = "caml_mat4_lookat";
 
-[@noalloc] external ortho: (t, float, float, float, float, float, float) => unit = "caml_mat4_ortho_bytecode" "caml_mat4_ortho_native";
-[@noalloc] external perspective: (t, radians, float, float, float) => unit = "caml_mat4_perspective";
+[@noalloc]
+external ortho: (t, float, float, float, float, float, float) => unit =
+  "caml_mat4_ortho_bytecode" "caml_mat4_ortho_native";
+[@noalloc]
+external perspective: (t, radians, float, float, float) => unit =
+  "caml_mat4_perspective";
 
 let fromRotation = (mat: t, ang: Angle.t, vec: Vec3.t) => {
-    identity(mat);
-    rotate(mat, ang, vec);
+  identity(mat);
+  rotate(mat, ang, vec);
 };
 
 let _right = Vec3.right();
@@ -36,13 +44,13 @@ let _up = Vec3.up();
 let _forward = Vec3.forward();
 
 let rotateX = (mat: t, ang: Angle.t) => {
-    rotate(mat, ang, _right);
+  rotate(mat, ang, _right);
 };
 
 let rotateY = (mat: t, ang: Angle.t) => {
-    rotate(mat, ang, _up);
+  rotate(mat, ang, _up);
 };
 
 let rotateZ = (mat: t, ang: Angle.t) => {
-    rotate(mat, ang, _forward);
+  rotate(mat, ang, _forward);
 };

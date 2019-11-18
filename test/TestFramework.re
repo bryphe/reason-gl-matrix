@@ -22,11 +22,11 @@ include RelyInternal.TestFramework.MakeInternal(
 
 // When https://github.com/facebookexperimental/reason-native/issues/207 is closed we can use the code below
 /*
-include Rely.Make({
-  let config =
-    Rely.TestFrameworkConfig.initialize({
-      snapshotDir: "test/__snapshots__",
-      projectDir: "",
-    });
-});
-*/
+ include Rely.Make({
+   let config =
+     Rely.TestFrameworkConfig.initialize({
+       snapshotDir: "test/__snapshots__",
+       projectDir: "",
+     });
+ });
+ */

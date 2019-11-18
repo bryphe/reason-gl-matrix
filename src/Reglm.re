@@ -1,4 +1,3 @@
-
 module Mat4 = Mat4;
 
 module Quat = Quat;

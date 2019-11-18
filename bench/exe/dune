@@ -1,6 +1,5 @@
 (executable
-    (name bench)
-    (public_name reglm-bench)
-    (libraries reglm-bench.lib)
-    (package reglm-bench)
-)
+ (name bench)
+ (public_name reglm-bench)
+ (libraries reglm-bench.lib)
+ (package reglm-bench))

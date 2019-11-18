@@ -8,6 +8,7 @@
     "build:js": "esy b dune build --profile=release ./test/bin/test_runner.bc.js",
     "test:js": "node bin/test-jsoo.js",
     "test:native": "esy b dune exec test/bin/test_runner.exe",
+    "format": "esy dune build @fmt --auto-promote",
     "test": "esy build:js && esy test:native && esy test:js"
   },
   "esy": {

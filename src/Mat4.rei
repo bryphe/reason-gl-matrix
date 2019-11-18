@@ -23,4 +23,3 @@ let ortho: (t, float, float, float, float, float, float) => unit;
 let perspective: (t, radians, float, float, float) => unit;
 
 let transformVec3: (Vec3.t, Vec3.t, t) => unit;
-

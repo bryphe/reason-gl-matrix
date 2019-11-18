@@ -1,11 +1,14 @@
 open Reglm;
 open BenchFramework;
 
+let options = Reperf.Options.create(~iterations=1_000_000, ());
+
 let m1 = Mat4.create();
 let m2 = Mat4.create();
 
 let mat4Create = () => {
-    let _ = Mat4.create();
+  let _ = Mat4.create();
+  ();
 };
 
 let mat4Multiply = () => {
@@ -13,20 +16,27 @@ let mat4Multiply = () => {
 };
 
 let quatCreate = () => {
-    let _ = Quat.create(1., 2., 3., 4.);
+  let _ = Quat.create(1., 2., 3., 4.);
+  ();
 };
 
 let vec4Create = () => {
-    let _ = Vec4.create(1., 2., 3., 4.);
+  let _ = Vec4.create(1., 2., 3., 4.);
+  ();
 };
 
 let vec3Create = () => {
-    let _ = Vec3.create(1., 2., 3.);
+  let _ = Vec3.create(1., 2., 3.);
+  ();
 };
 
 let vec2Create = () => {
-    let _ = Vec2.create(1., 2.);
+  let _ = Vec2.create(1., 2.);
+  ();
 };
+
+let bench = (~name, ~f, ()) =>
+  bench(~options, ~setup=() => (), ~name, ~f, ());
 
 bench(~name="Mat4: Create", ~f=mat4Create, ());
 bench(~name="Mat4: Multiply", ~f=mat4Multiply, ());
