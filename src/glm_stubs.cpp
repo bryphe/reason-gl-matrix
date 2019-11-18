@@ -23,11 +23,11 @@ extern "C" {
     CAMLprim value
     caml_vec2_create(double x, double y) {
         CAMLparam0 ();
-        glm::vec2 vec(x, y);
-        float* vptr = (glm::value_ptr(vec));
         CAMLlocal1(v);
         v = caml_alloc_custom(&objst_custom_ops, sizeof(float) * 2, 0, 1);
-        memcpy((void *)Data_custom_val(v), (void *)vptr, sizeof(float) * 2);
+        float *vptr = (float *)Data_custom_val(v);
+        vptr[0] = x;
+        vptr[1] = y;
         CAMLreturn(v);
     }
 
@@ -42,11 +42,12 @@ extern "C" {
     CAMLprim value
     caml_vec3_create(double x, double y, double z) {
         CAMLparam0 ();
-        glm::vec3 vec(x, y, z);
-        float* vptr = (glm::value_ptr(vec));
         CAMLlocal1(v);
         v = caml_alloc_custom(&objst_custom_ops, sizeof(float) * 3, 0, 1);
-        memcpy((void *)Data_custom_val(v), (void *)vptr, sizeof(float) * 3);
+        float *vptr = (float *)Data_custom_val(v);
+        vptr[0] = x;
+        vptr[1] = y;
+        vptr[2] = z;
         CAMLreturn(v);
     }
 
@@ -61,11 +62,13 @@ extern "C" {
     CAMLprim value
     caml_vec4_create(double x, double y, double z, double w) {
         CAMLparam0 ();
-        glm::vec4 vec(x, y, z, w);
-        float* vptr = (glm::value_ptr(vec));
         CAMLlocal1(v);
         v = caml_alloc_custom(&objst_custom_ops, sizeof(float) * 4, 0, 1);
-        memcpy((void *)Data_custom_val(v), (void *)vptr, sizeof(float) * 4);
+        float *vptr = (float *)Data_custom_val(v);
+        vptr[0] = x;
+        vptr[1] = y;
+        vptr[2] = z;
+        vptr[3] = w;
         CAMLreturn(v);
     }
 
@@ -179,35 +182,67 @@ extern "C" {
     CAMLprim value
     caml_mat4_create(value unit) {
         CAMLparam0 ();
-        glm::mat4 mat = glm::mat4(1.0f);
-        float* ptr = (glm::value_ptr(mat));
-        /* for(int i = 0; i < 16; i++) { */
-        /*     printf("index: %d val: %f address: %d\n", i, ((float *)ptr)[i], (ptr + i)); */
-        /* } */
         CAMLlocal1(v);
         v = caml_alloc_custom(&objst_custom_ops, sizeof(float) * 16, 0, 1);
-        /* printf("data custom val pointer: %d\n", (void *)Data_custom_val(v)); */
-        /* printf("data custom val pointer2: %d\n", (void *)Data_custom_val(v)); */
+        float* ptr = (float *)Data_custom_val(v);
+         for(int i = 0; i < 16; i++) {
+             ptr[i] = 0.0f;
+         }
 
-        memcpy((void *)Data_custom_val(v), (void *)ptr, sizeof(float) * 16);
-        float *vf = (float *)Data_custom_val(v);
-        /* printf("pointer: %d\n", vf); */
-        /* for(int i = 0; i < 16; i++) { */
-        /*     printf("index: %d val: %f address: %d\n", i, ((float *)vf)[i], (vf + i)); */
-        /* } */
+         ptr[0] = 1.0f;
+         ptr[5] = 1.0f;
+         ptr[10] = 1.0f;
+         ptr[15] = 1.0f;
+        
+        CAMLreturn(v);
+    }
+    
+    CAMLprim value
+    caml_mat4_createFromTranslationAndScale(
+    double scaleX, double scaleY, double scaleZ, double translateX, double translateY, double translateZ) {
+        CAMLparam0 ();
+        CAMLlocal1(v);
+        v = caml_alloc_custom(&objst_custom_ops, sizeof(float) * 16, 0, 1);
+        float *ptr = (float *)Data_custom_val(v);
+         for(int i = 0; i < 16; i++) {
+             ptr[i] = 0.0f;
+         }
+
+         ptr[0] = scaleX;
+         ptr[5] = scaleY;
+         ptr[10] = scaleZ;
+         ptr[12] = translateX;
+         ptr[13] = translateY;
+         ptr[14] = translateZ;
+         ptr[15] = 1.0f;
         CAMLreturn(v);
     }
 
     CAMLprim value
+    caml_mat4_createFromTranslationAndScale_byte(
+        value *argv, int argn
+        ) {
+        return caml_mat4_createFromTranslationAndScale(
+            Double_val(argv[0]),
+            Double_val(argv[1]),
+            Double_val(argv[2]),
+            Double_val(argv[3]),
+            Double_val(argv[4]),
+            Double_val(argv[5])
+        );
+    }
+
+    CAMLprim value
     caml_mat4_identity(value vMat) {
-        float* matrix = (float*)(Data_custom_val(vMat));
+        float* ptr = (float*)(Data_custom_val(vMat));
+         for(int i = 0; i < 16; i++) {
+             ptr[i] = 0.0f;
+         }
 
-        glm::mat4 glm_matrix = glm::mat4(1.0f);
-        const float *outMatrix = (const float*)(glm::value_ptr(glm_matrix));
-
-        for(int i = 0; i < 16; i++) {
-            matrix[i] = outMatrix[i];
-        }
+         ptr[0] = 1.0f;
+         ptr[5] = 1.0f;
+         ptr[10] = 1.0f;
+         ptr[15] = 1.0f;
 
         return Val_unit;
     }
@@ -379,15 +414,5 @@ extern "C" {
         CAMLlocal1(ret);
         ret = caml_copy_double(v);
         CAMLreturn(ret);
-    }
-
-    CAMLprim value
-    caml_mat4_debug_print(value vMat) {
-        const float* matrix = (const float*)(Data_custom_val(vMat));
-
-        for(int i = 0; i < 16; i++) {
-            printf("index: %d val: %f\n", i, matrix[i]);
-        }
-        return Val_unit;
     }
 }
