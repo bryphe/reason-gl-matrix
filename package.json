@@ -1,6 +1,6 @@
 {
   "name": "reason-gl-matrix",
-  "version": "0.9.9305",
+  "version": "0.9.9307",
   "description": "Cross-platform high-performance vector and matrix math for OpenGL",
   "url": "https://github.com/bryphe/reason-gl-matrix",
   "license": "MIT",
