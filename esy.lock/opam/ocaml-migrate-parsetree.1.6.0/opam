@@ -4,7 +4,7 @@ authors: [
   "Frédéric Bour <frederic.bour@lakaban.net>"
   "Jérémie Dimino <jeremie@dimino.org>"
 ]
-license: "LGPL-2.1-only with OCaml-LGPL-linking-exception"
+license: "LGPL-2.1 with OCaml linking exception"
 homepage: "https://github.com/ocaml-ppx/ocaml-migrate-parsetree"
 bug-reports: "https://github.com/ocaml-ppx/ocaml-migrate-parsetree/issues"
 dev-repo: "git+https://github.com/ocaml-ppx/ocaml-migrate-parsetree.git"
@@ -29,9 +29,9 @@ rewriters independent of a compiler version.
 """
 url {
   src:
-    "https://github.com/ocaml-ppx/ocaml-migrate-parsetree/releases/download/v1.4.0/ocaml-migrate-parsetree-v1.4.0.tbz"
+    "https://github.com/ocaml-ppx/ocaml-migrate-parsetree/releases/download/v1.6.0/ocaml-migrate-parsetree-v1.6.0.tbz"
   checksum: [
-    "sha256=231fbdc205187b3ee266b535d9cfe44b599067b2f6e97883c782ea7bb577d3b8"
-    "sha512=61ee91d2d146cc2d2ff2d5dc4ef5dea4dc4d3c8dbd8b4c9586d64b6ad7302327ab35547aa0a5b0103c3f07b66b13d416a1bee6d4d117293cd3cabe44113ec6d4"
+    "sha256=9b018e7d25114ce17fc0b82b7cd7c927b84ebb6b043aa987fa7731c2484de33f"
+    "sha512=e03a5fe44ecf43683c764a7285a65bfa80639c09badf422661723bc3483d6d799c47c1ead34c2caa289a37e1b4b46d809c8cc56537d5c76e6004849d2d8a305f"
   ]
 }
